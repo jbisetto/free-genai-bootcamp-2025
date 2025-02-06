@@ -14,7 +14,7 @@ Beginner, CEFR A1
 - Provide words in their singular dictionary form, student needs to figure out conjugations and tenses
 - provide a possible sentence structure like the following: Possible sentence structure:
 [Plural noun] + [verb] + [preposition] + [noun] + [question word] + [verb] + [subject] + [noun] + [adverb]?
-- when providing hints do not provide hints related to tense or preposition
+- when providing hints do not provide hints related to pluralization, tense or preposition
 
 ## Student input
 Bears are at the door, did you leave the garbage out?
