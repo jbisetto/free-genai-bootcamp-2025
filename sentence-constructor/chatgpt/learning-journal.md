@@ -22,3 +22,11 @@ Future work:
 - fix giving the answer in the side bar
 - try to get it to use a similar example i.e. instead of cat use dog, etc
 - may need to do this with bad examples in the prompt
+
+## Used Claude assisted prompt
+- used "the cat jumped over the moon"
+- didn't provide translation for "over" in the vocabulary table but did in the clues.
+- nice use of emojis
+```Now, please try translating the sentence into Italian! 😊```
+- on second attempt it started to give some of the translation away but did give suggestions on how to change correct parts so that they are more natural sounding
+- once grammatically correct it provided changes for natural flow with reasons why and italian to english translations for the changes
