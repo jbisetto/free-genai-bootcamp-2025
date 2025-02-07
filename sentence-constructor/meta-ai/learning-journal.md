@@ -62,3 +62,11 @@ Initial creation
 ### Response Evaluation
 - hints are better, focusing on nouns and verbs
 - listing adverbs but not their italian tanslation
+
+## Used Claude assisted prompt
+- with the same sample sentence it is including articles in the table and in the hints
+- provided translation for 'jumped' instead of 'jump', giving away the tense for that part of the translation
+- nice touch, nice use of Italian in the congratulatory message
+```
+Bravo! Your translation is now perfect!
+```
