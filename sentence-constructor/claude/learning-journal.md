@@ -119,4 +119,7 @@ Special Handling Cases
 ![First Claude response](claude-first.png)
 - I like that the clues are high level and don't give away the answer
 - I picked up on the fact that i know some french when evaluating my translation
+
+## v004
+#3 v004 add the CEFR langauge level to the educational principles
   
