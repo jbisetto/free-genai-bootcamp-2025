@@ -115,3 +115,8 @@ Special Handling Cases
 - When to suggest review of basic concepts
 - How to handle multiple errors in one attempt
 ```
+### Response Evaluation
+![First Claude response](claude-first.png)
+- I like that the clues are high level and don't give away the answer
+- I picked up on the fact that i know some french when evaluating my translation
+  
