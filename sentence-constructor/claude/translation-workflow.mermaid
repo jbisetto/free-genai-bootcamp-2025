@@ -1,0 +1,45 @@
+stateDiagram-v2
+    [*] --> PromptStudent: Start
+    
+    PromptStudent --> StudentInput_English: Student provides
+    StudentInput_English --> ProvideTranslationGuidance: Process input
+    
+    ProvideTranslationGuidance --> AssistantOutput_Guidance
+    state AssistantOutput_Guidance {
+        [*] --> VocabularyTable
+        VocabularyTable --> SentenceStructure
+        SentenceStructure --> CluesAndConsiderations
+        CluesAndConsiderations --> [*]
+    }
+    
+    ProvideTranslationGuidance --> StudentAttempt: Guide provided
+    ProvideTranslationGuidance --> StudentQuestions: Student needs help
+    
+    StudentQuestions --> ProvideClarification: Ask question
+    ProvideClarification --> AssistantOutput_Clarification
+    state AssistantOutput_Clarification {
+        [*] --> Clues
+        Clues --> [*]
+    }
+    
+    ProvideClarification --> StudentAttempt: Try translation
+    ProvideClarification --> StudentQuestions: Need more help
+    
+    StudentAttempt --> StudentInput_Italian
+    state StudentInput_Italian {
+        [*] --> ItalianSentence
+        ItalianSentence --> [*]
+    }
+    
+    StudentAttempt --> EvaluateAttempt: Submit translation
+    
+    EvaluateAttempt --> AssistantOutput_Evaluation
+    state AssistantOutput_Evaluation {
+        [*] --> InstructorInterpretation
+        InstructorInterpretation --> EvaluationClues
+        EvaluationClues --> [*]
+    }
+    
+    EvaluateAttempt --> StudentAttempt: Retry
+    EvaluateAttempt --> StudentQuestions: Ask for help
+    EvaluateAttempt --> PromptStudent: Next sentence
