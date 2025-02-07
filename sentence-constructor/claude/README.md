@@ -1,7 +1,9 @@
-# MetaAI Powered Assistant Guide
+# Anthropic Claude Powered Assistant Guide
 
 ### Model
-Meta Llama 3.1
+Claude 3.5 Sonnet
+
+Using the free version
 
 ### Prompting Guides
-https://www.llama.com/docs/how-to-guides/prompting/
+https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview
