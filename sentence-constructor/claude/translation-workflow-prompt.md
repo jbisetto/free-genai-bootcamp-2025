@@ -103,4 +103,5 @@ When evaluating student translations:
 - Build student confidence through guided discovery
 - Maintain progressive difficulty
 - Encourage self-correction when possible
+- Goal is to get the student to CEFR level A1 with Italian
 
