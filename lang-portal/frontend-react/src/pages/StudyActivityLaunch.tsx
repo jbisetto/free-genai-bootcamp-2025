@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useNavigation } from '@/context/NavigationContext'
-import { createStudySession } from '@/services/api'
+import api from '../services/api'
 
 type Group = {
   id: number
@@ -66,7 +66,7 @@ export default function StudyActivityLaunch() {
     
     try {
       // Create a study session first
-      const result = await createStudySession(parseInt(selectedGroup), launchData.activity.id);
+      const result = await api.createStudySession(parseInt(selectedGroup), launchData.activity.id);
       const sessionId = result.session_id;
       
       // Replace any instances of $group_id with the actual group id and add session_id
