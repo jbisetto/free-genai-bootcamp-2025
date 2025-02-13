@@ -155,7 +155,77 @@ def load(app):
     except Exception as e:
       return jsonify({"error": str(e)}), 500
 
-  # todo GET /groups/:id/words/raw
+  @app.route('/groups/<int:id>/words/raw', methods=['GET'])
+  @cross_origin()
+  def get_group_words_raw(id):
+    try:
+      cursor = app.db.cursor()
+      
+      # Get pagination parameters
+      page = int(request.args.get('page', 1))
+      words_per_page = 10
+      offset = (page - 1) * words_per_page
+
+      # Get sorting parameters
+      sort_by = request.args.get('sort_by', 'kanji')
+      order = request.args.get('order', 'asc')
+
+      # Validate sort parameters
+      valid_columns = ['kanji', 'romaji', 'english', 'correct_count', 'wrong_count']
+      if sort_by not in valid_columns:
+        sort_by = 'kanji'
+      if order not in ['asc', 'desc']:
+        order = 'asc'
+
+      # First, check if the group exists
+      cursor.execute('SELECT name FROM groups WHERE id = ?', (id,))
+      group = cursor.fetchone()
+      if not group:
+        return jsonify({"error": "Group not found"}), 404
+
+      # Query to fetch words with pagination and sorting
+      cursor.execute(f'''
+        SELECT w.*, 
+               COALESCE(wr.correct_count, 0) as correct_count,
+               COALESCE(wr.wrong_count, 0) as wrong_count
+        FROM words w
+        JOIN word_groups wg ON w.id = wg.word_id
+        LEFT JOIN word_reviews wr ON w.id = wr.word_id
+        WHERE wg.group_id = ?
+        ORDER BY {sort_by} {order}
+        LIMIT ? OFFSET ?
+      ''', (id, words_per_page, offset))
+      
+      words = cursor.fetchall()
+
+      # Get total words count for pagination
+      cursor.execute('''
+        SELECT COUNT(*) 
+        FROM word_groups 
+        WHERE group_id = ?
+      ''', (id,))
+      total_words = cursor.fetchone()[0]
+      total_pages = (total_words + words_per_page - 1) // words_per_page
+
+      # Format the response
+      words_data = []
+      for word in words:
+        words_data.append({
+          "id": word["id"],
+          "kanji": word["kanji"],
+          "romaji": word["romaji"],
+          "english": word["english"],
+          "correct_count": word["correct_count"],
+          "wrong_count": word["wrong_count"]
+        })
+
+      return jsonify({
+        'words': words_data,
+        'total_pages': total_pages,
+        'current_page': page
+      })
+    except Exception as e:
+      return jsonify({"error": str(e)}), 500
 
   @app.route('/groups/<int:id>/study_sessions', methods=['GET'])
   @cross_origin()

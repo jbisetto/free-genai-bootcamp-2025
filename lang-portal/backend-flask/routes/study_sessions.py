@@ -170,3 +170,47 @@ def load(app):
       return jsonify({"message": "Study history cleared successfully"}), 200
     except Exception as e:
       return jsonify({"error": str(e)}), 500
+
+  @app.route('/api/study-sessions', methods=['POST'])
+  @cross_origin()
+  def create_study_session():
+    try:
+      data = request.get_json()
+      group_id = data['group_id']
+      study_activity_id = data['study_activity_id']
+
+      cursor = app.db.cursor()
+      
+      # Insert new study session
+      cursor.execute('''
+        INSERT INTO study_sessions (group_id, study_activity_id)
+        VALUES (?, ?)
+      ''', (group_id, study_activity_id))
+      
+      app.db.commit()
+      
+      return jsonify({"message": "Study session created successfully"}), 201
+    except Exception as e:
+      return jsonify({"error": str(e)}), 500
+
+  @app.route('/api/study-sessions/<id>/review', methods=['POST'])
+  @cross_origin()
+  def review_study_session(id):
+    try:
+      data = request.get_json()
+      word_id = data['word_id']
+      correct = data['correct']
+
+      cursor = app.db.cursor()
+      
+      # Insert new word review item
+      cursor.execute('''
+        INSERT INTO word_review_items (word_id, correct)
+        VALUES (?, ?)
+      ''', (word_id, correct))
+      
+      app.db.commit()
+      
+      return jsonify({"message": "Word review recorded successfully"}), 200
+    except Exception as e:
+      return jsonify({"error": str(e)}), 500
