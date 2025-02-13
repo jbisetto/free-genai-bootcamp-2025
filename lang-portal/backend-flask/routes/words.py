@@ -11,7 +11,7 @@ def load(app):
         return jsonify({"error": str(e)}), 500
 
     # Endpoint: GET /words with pagination (50 words per page)
-    @app.route('/words', methods=['GET'])
+    @app.route('/api/words', methods=['GET'])
     @cross_origin()
     def get_words():
         try:
@@ -89,8 +89,8 @@ def load(app):
             if hasattr(app, 'db') and app.db is not None:
                 app.db.close()
 
-    # Endpoint: GET /words/:id to get a single word with its details
-    @app.route('/words/<int:word_id>', methods=['GET'])
+    # Endpoint: GET /api/words/:id to get a single word with its details
+    @app.route('/api/words/<int:word_id>', methods=['GET'])
     @cross_origin()
     def get_word(word_id):
         try:
@@ -140,7 +140,7 @@ def load(app):
         except Exception as e:
             return handle_db_error(e)
 
-    @app.route('/words/search', methods=['GET'])
+    @app.route('/api/words/search', methods=['GET'])
     @cross_origin()
     def search_words():
         try:

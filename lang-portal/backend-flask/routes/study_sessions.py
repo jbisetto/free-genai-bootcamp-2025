@@ -105,7 +105,7 @@ def load(app):
     except Exception as e:
       return handle_db_error(e)
 
-  @app.route('/api/study-sessions/<id>', methods=['GET'])
+  @app.route('/api/study-sessions/<int:id>', methods=['GET'])
   @cross_origin()
   def get_study_session(id):
     try:

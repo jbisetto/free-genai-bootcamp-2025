@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ChevronUp, ChevronDown } from 'lucide-react'
-import { fetchGroups, type Group } from '../services/api'
+import { api, type Group } from '../services/api'
 
-type SortKey = 'name' | 'word_count'
+type SortKey = 'name' | 'words_count'
 
 export default function Groups() {
   const [groups, setGroups] = useState<Group[]>([])
@@ -19,8 +19,8 @@ export default function Groups() {
       setIsLoading(true)
       setError(null)
       try {
-        const response = await fetchGroups(currentPage, sortKey, sortDirection)
-        setGroups(response.groups)
+        const response = await api.getGroups(currentPage, sortKey, sortDirection)
+        setGroups(response.items)
         setTotalPages(response.total_pages)
       } catch (err) {
         setError('Failed to load groups')
@@ -57,7 +57,7 @@ export default function Groups() {
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
           <thead className="bg-gray-50 dark:bg-gray-900">
             <tr>
-              {(['name', 'word_count'] as const).map((key) => (
+              {(['name', 'words_count'] as const).map((key) => (
                 <th
                   key={key}
                   className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer"
@@ -85,11 +85,11 @@ export default function Groups() {
                     to={`/groups/${group.id}`}
                     className="text-blue-600 dark:text-blue-400 hover:underline"
                   >
-                    {group.group_name}
+                    {group.name}
                   </Link>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
-                  {group.word_count}
+                  {group.words_count}
                 </td>
               </tr>
             ))}

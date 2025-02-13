@@ -1,16 +1,18 @@
-const API_BASE_URL = '/api';
+const API_BASE_URL = '/api';  // This is correct - don't change to port 5000
 
 // Group types
 export interface Group {
   id: number;
-  group_name: string;
-  word_count: number;
+  name: string;
+  words_count: number;
 }
 
 export interface GroupsResponse {
-  groups: Group[];
+  items: Group[];
+  total: number;
+  page: number;
+  per_page: number;
   total_pages: number;
-  current_page: number;
 }
 
 // Word types
@@ -101,7 +103,15 @@ export interface StudySessionsResponse {
 export const api = {
   // Words
   getWords: async (page = 1, sortBy = 'kanji', order = 'asc'): Promise<WordsResponse> => {
-    const response = await fetch(`${API_BASE_URL}/words?page=${page}&sort_by=${sortBy}&order=${order}`);
+    const response = await fetch(
+      `${API_BASE_URL}/words?page=${page}&sort_by=${sortBy}&order=${order}`,
+      {
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
+      }
+    );
     if (!response.ok) throw new Error('Failed to fetch words');
     return response.json();
   },
@@ -126,10 +136,18 @@ export const api = {
     order: 'asc' | 'desc' = 'asc'
   ): Promise<GroupsResponse> => {
     const response = await fetch(
-      `${API_BASE_URL}/groups?page=${page}&sort_by=${sortBy}&order=${order}`
+      `${API_BASE_URL}/groups?page=${page}&sort_by=${sortBy}&order=${order}`,
+      {  // Add headers to prevent caching
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache'
+        }
+      }
     );
     if (!response.ok) throw new Error('Failed to fetch groups');
-    return response.json();
+    const data = await response.json();
+    console.log('Groups API Response:', data);  // Add this log
+    return data;
   },
 
   getGroupDetails: async (groupId: number): Promise<GroupDetails> => {

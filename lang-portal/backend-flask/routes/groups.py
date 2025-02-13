@@ -20,7 +20,7 @@ def load(app):
             return jsonify({"error": "Database connection error"}), 500
         return jsonify({"error": str(e)}), 500
 
-    @app.route('/groups', methods=['GET'])
+    @app.route('/api/groups', methods=['GET'])
     @cross_origin()
     def get_groups():
         try:
@@ -80,7 +80,7 @@ def load(app):
         except Exception as e:
             return handle_db_error(e)
 
-    @app.route('/groups', methods=['POST'])
+    @app.route('/api/groups', methods=['POST'])
     @cross_origin()
     def create_group():
         try:
@@ -108,7 +108,7 @@ def load(app):
         except Exception as e:
             return handle_db_error(e)
 
-    @app.route('/groups/<int:id>/words', methods=['POST'])
+    @app.route('/api/groups/<int:id>/words', methods=['POST'])
     @cross_origin()
     def add_word_to_group(id):
         try:
@@ -152,7 +152,7 @@ def load(app):
         except Exception as e:
             return handle_db_error(e)
 
-    @app.route('/groups/<int:id>/words/<int:word_id>', methods=['DELETE'])
+    @app.route('/api/groups/<int:id>/words/<int:word_id>', methods=['DELETE'])
     @cross_origin()
     def remove_word_from_group(id, word_id):
         try:
@@ -184,7 +184,7 @@ def load(app):
         except Exception as e:
             return handle_db_error(e)
 
-    @app.route('/groups/<int:id>', methods=['DELETE'])
+    @app.route('/api/groups/<int:id>', methods=['DELETE'])
     @cross_origin()
     def delete_group(id):
         try:
@@ -208,7 +208,7 @@ def load(app):
         except Exception as e:
             return handle_db_error(e)
 
-    @app.route('/groups/<int:id>', methods=['GET'])
+    @app.route('/api/groups/<int:id>', methods=['GET'])
     @cross_origin()
     def get_group(id):
         try:
@@ -257,7 +257,7 @@ def load(app):
         except Exception as e:
             return handle_db_error(e)
 
-    @app.route('/groups/<int:id>/words', methods=['GET'])
+    @app.route('/api/groups/<int:id>/words', methods=['GET'])
     @cross_origin()
     def get_group_words(id):
         try:
@@ -329,7 +329,7 @@ def load(app):
         except Exception as e:
             return handle_db_error(e)
 
-    @app.route('/groups/<int:id>/words/raw', methods=['GET'])
+    @app.route('/api/groups/<int:id>/words/raw', methods=['GET'])
     @cross_origin()
     def get_group_words_raw(id):
         try:
@@ -401,7 +401,7 @@ def load(app):
         except Exception as e:
             return handle_db_error(e)
 
-    @app.route('/groups/<int:id>/study_sessions', methods=['GET'])
+    @app.route('/api/groups/<int:id>/study_sessions', methods=['GET'])
     @cross_origin()
     def get_group_study_sessions(id):
         try:
