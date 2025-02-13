@@ -6,17 +6,57 @@ import math
 def load(app):
   # todo /study_sessions POST
 
+  def validate_pagination(page, per_page):
+    if page < 1:
+      return jsonify({"error": "Page number must be greater than 0"}), 400
+    if per_page < 1:
+      return jsonify({"error": "Per page must be greater than 0"}), 400
+    if per_page > 100:
+      return jsonify({"error": "Per page must be less than or equal to 100"}), 400
+    return None
+
+  def handle_db_error(e):
+    if not hasattr(app, 'db') or app.db is None:
+        return jsonify({"error": "Database connection error"}), 500
+    if 'closed database' in str(e) or 'no such table' in str(e):
+        return jsonify({"error": "Database connection error"}), 500
+    return jsonify({"error": str(e)}), 500
+
   @app.route('/api/study-sessions', methods=['GET'])
   @cross_origin()
   def get_study_sessions():
     try:
+      if not hasattr(app, 'db') or app.db is None:
+        return jsonify({"error": "Database connection error"}), 500
+            
       cursor = app.db.cursor()
       
       # Get pagination parameters
       page = request.args.get('page', 1, type=int)
       per_page = request.args.get('per_page', 10, type=int)
+      
+      # Validate pagination parameters
+      error_response = validate_pagination(page, per_page)
+      if error_response:
+        return error_response
+      
       offset = (page - 1) * per_page
 
+      # Get sorting parameters
+      sort_by = request.args.get('sort_by', 'created_at')
+      order = request.args.get('order', 'desc')
+
+      # Map frontend sort keys to database columns
+      sort_mapping = {
+          'review_items_count': 'review_items_count',
+          'created_at': 'ss.created_at',
+          'group_name': 'g.name',
+          'activity_name': 'sa.name'
+      }
+
+      # Use mapped sort column or default to created_at
+      sort_column = sort_mapping.get(sort_by, 'ss.created_at')
+      
       # Get total count
       cursor.execute('''
         SELECT COUNT(*) as count 
@@ -27,7 +67,7 @@ def load(app):
       total_count = cursor.fetchone()['count']
 
       # Get paginated sessions
-      cursor.execute('''
+      cursor.execute(f'''
         SELECT 
           ss.id,
           ss.group_id,
@@ -41,7 +81,7 @@ def load(app):
         JOIN study_activities sa ON sa.id = ss.study_activity_id
         LEFT JOIN word_review_items wri ON wri.study_session_id = ss.id
         GROUP BY ss.id
-        ORDER BY ss.created_at DESC
+        ORDER BY {sort_column} {order}
         LIMIT ? OFFSET ?
       ''', (per_page, offset))
       sessions = cursor.fetchall()
@@ -54,7 +94,7 @@ def load(app):
           'activity_id': session['activity_id'],
           'activity_name': session['activity_name'],
           'start_time': session['created_at'],
-          'end_time': session['created_at'],  # For now, just use the same time since we don't track end time
+          'end_time': session['created_at'],
           'review_items_count': session['review_items_count']
         } for session in sessions],
         'total': total_count,
@@ -63,13 +103,24 @@ def load(app):
         'total_pages': math.ceil(total_count / per_page)
       })
     except Exception as e:
-      return jsonify({"error": str(e)}), 500
+      return handle_db_error(e)
 
   @app.route('/api/study-sessions/<id>', methods=['GET'])
   @cross_origin()
   def get_study_session(id):
     try:
       cursor = app.db.cursor()
+      
+      # Get pagination parameters
+      page = request.args.get('page', 1, type=int)
+      per_page = request.args.get('per_page', 10, type=int)
+      
+      # Validate pagination parameters
+      error_response = validate_pagination(page, per_page)
+      if error_response:
+        return error_response
+            
+      offset = (page - 1) * per_page
       
       # Get session details
       cursor.execute('''
@@ -93,17 +144,12 @@ def load(app):
       if not session:
         return jsonify({"error": "Study session not found"}), 404
 
-      # Get pagination parameters
-      page = request.args.get('page', 1, type=int)
-      per_page = request.args.get('per_page', 10, type=int)
-      offset = (page - 1) * per_page
-
-      # Get the words reviewed in this session with their review status
+      # Get the words reviewed in this session
       cursor.execute('''
         SELECT 
           w.*,
-          COALESCE(SUM(CASE WHEN wri.correct = 1 THEN 1 ELSE 0 END), 0) as session_correct_count,
-          COALESCE(SUM(CASE WHEN wri.correct = 0 THEN 1 ELSE 0 END), 0) as session_wrong_count
+          COUNT(CASE WHEN wri.correct = 1 THEN 1 END) as correct_count,
+          COUNT(CASE WHEN wri.correct = 0 THEN 1 END) as wrong_count
         FROM words w
         JOIN word_review_items wri ON wri.word_id = w.id
         WHERE wri.study_session_id = ?
@@ -114,16 +160,6 @@ def load(app):
       
       words = cursor.fetchall()
 
-      # Get total count of words
-      cursor.execute('''
-        SELECT COUNT(DISTINCT w.id) as count
-        FROM words w
-        JOIN word_review_items wri ON wri.word_id = w.id
-        WHERE wri.study_session_id = ?
-      ''', (id,))
-      
-      total_count = cursor.fetchone()['count']
-
       return jsonify({
         'session': {
           'id': session['id'],
@@ -132,7 +168,7 @@ def load(app):
           'activity_id': session['activity_id'],
           'activity_name': session['activity_name'],
           'start_time': session['created_at'],
-          'end_time': session['created_at'],  # For now, just use the same time
+          'end_time': session['created_at'],
           'review_items_count': session['review_items_count']
         },
         'words': [{
@@ -140,16 +176,12 @@ def load(app):
           'kanji': word['kanji'],
           'romaji': word['romaji'],
           'english': word['english'],
-          'correct_count': word['session_correct_count'],
-          'wrong_count': word['session_wrong_count']
-        } for word in words],
-        'total': total_count,
-        'page': page,
-        'per_page': per_page,
-        'total_pages': math.ceil(total_count / per_page)
+          'correct_count': word['correct_count'],
+          'wrong_count': word['wrong_count']
+        } for word in words]
       })
     except Exception as e:
-      return jsonify({"error": str(e)}), 500
+      return handle_db_error(e)
 
   # todo POST /study_sessions/:id/review
 
@@ -169,48 +201,143 @@ def load(app):
       
       return jsonify({"message": "Study history cleared successfully"}), 200
     except Exception as e:
-      return jsonify({"error": str(e)}), 500
+      return handle_db_error(e)
 
   @app.route('/api/study-sessions', methods=['POST'])
   @cross_origin()
   def create_study_session():
     try:
-      data = request.get_json()
-      group_id = data['group_id']
-      study_activity_id = data['study_activity_id']
-
-      cursor = app.db.cursor()
-      
-      # Insert new study session
-      cursor.execute('''
-        INSERT INTO study_sessions (group_id, study_activity_id)
-        VALUES (?, ?)
-      ''', (group_id, study_activity_id))
-      
-      app.db.commit()
-      
-      return jsonify({"message": "Study session created successfully"}), 201
+        # First check if request is JSON
+        if not request.is_json:
+            return jsonify({"error": "Invalid JSON"}), 400
+            
+        # Then try to parse JSON
+        try:
+            data = request.get_json()
+        except:
+            return jsonify({"error": "Invalid JSON format"}), 400
+        
+        # Validate required fields
+        if not data or 'group_id' not in data or 'study_activity_id' not in data:
+            return jsonify({"error": "Missing required fields"}), 400
+            
+        # Validate types
+        try:
+            group_id = int(data['group_id'])
+            study_activity_id = int(data['study_activity_id'])
+        except (ValueError, TypeError):
+            return jsonify({"error": "Invalid data types"}), 400
+            
+        # Now check if db is available
+        if not hasattr(app, 'db') or app.db is None:
+            return jsonify({"error": "Database connection error"}), 500
+            
+        cursor = app.db.cursor()
+        
+        # Verify group exists
+        cursor.execute('SELECT id FROM groups WHERE id = ?', (group_id,))
+        if not cursor.fetchone():
+            return jsonify({"error": "Group not found"}), 404
+            
+        # Verify study activity exists
+        cursor.execute('SELECT id FROM study_activities WHERE id = ?', (study_activity_id,))
+        if not cursor.fetchone():
+            return jsonify({"error": "Study activity not found"}), 404
+            
+        # Create study session
+        cursor.execute('''
+            INSERT INTO study_sessions (group_id, study_activity_id, created_at)
+            VALUES (?, ?, datetime('now'))
+        ''', (group_id, study_activity_id))
+        
+        session_id = cursor.lastrowid
+        app.db.commit()
+        
+        return jsonify({"id": session_id}), 201
+        
     except Exception as e:
-      return jsonify({"error": str(e)}), 500
+        # Only return 500 for unexpected errors
+        if isinstance(e, (ValueError, TypeError)):
+            return jsonify({"error": str(e)}), 400
+        return handle_db_error(e)
 
   @app.route('/api/study-sessions/<id>/review', methods=['POST'])
   @cross_origin()
   def review_study_session(id):
     try:
-      data = request.get_json()
-      word_id = data['word_id']
-      correct = data['correct']
+        if not request.is_json:
+            return jsonify({"error": "Invalid JSON"}), 400
+            
+        data = request.get_json()
+        
+        # Validate required fields
+        if not data or 'word_id' not in data or 'correct' not in data:
+            return jsonify({"error": "Missing required fields"}), 400
+            
+        # Validate types
+        try:
+            word_id = int(data['word_id'])
+        except (ValueError, TypeError):
+            return jsonify({"error": "word_id must be a number"}), 400
+            
+        if not isinstance(data['correct'], bool):
+            return jsonify({"error": "correct must be a boolean"}), 400
+            
+        correct = data['correct']
 
-      cursor = app.db.cursor()
-      
-      # Insert new word review item
-      cursor.execute('''
-        INSERT INTO word_review_items (word_id, correct)
-        VALUES (?, ?)
-      ''', (word_id, correct))
-      
-      app.db.commit()
-      
-      return jsonify({"message": "Word review recorded successfully"}), 200
+        cursor = app.db.cursor()
+        
+        # Verify session exists
+        cursor.execute('SELECT id FROM study_sessions WHERE id = ?', (id,))
+        if not cursor.fetchone():
+            return jsonify({"error": "Study session not found"}), 404
+        
+        # Verify word exists
+        cursor.execute('SELECT id FROM words WHERE id = ?', (word_id,))
+        if not cursor.fetchone():
+            return jsonify({"error": "Word not found"}), 404
+        
+        try:
+            # Insert new word review item
+            cursor.execute('''
+                INSERT INTO word_review_items (word_id, study_session_id, correct, created_at)
+                VALUES (?, ?, ?, datetime('now'))
+            ''', (word_id, id, correct))
+            
+            # Get current review counts
+            cursor.execute('''
+                SELECT correct_count, wrong_count 
+                FROM word_reviews 
+                WHERE word_id = ?
+            ''', (word_id,))
+            
+            result = cursor.fetchone()
+            if result:
+                # Update existing counts
+                current_correct = result['correct_count']
+                current_wrong = result['wrong_count']
+                cursor.execute('''
+                    UPDATE word_reviews 
+                    SET correct_count = ?,
+                        wrong_count = ?
+                    WHERE word_id = ?
+                ''', (current_correct + (1 if correct else 0), 
+                     current_wrong + (0 if correct else 1), 
+                     word_id))
+            else:
+                # Insert new record
+                cursor.execute('''
+                    INSERT INTO word_reviews (word_id, correct_count, wrong_count)
+                    VALUES (?, ?, ?)
+                ''', (word_id, 1 if correct else 0, 0 if correct else 1))
+            
+            app.db.commit()
+            
+            return jsonify({"message": "Word review recorded successfully"}), 200
+            
+        except Exception as e:
+            app.db.rollback()
+            raise e
+            
     except Exception as e:
-      return jsonify({"error": str(e)}), 500
+        return handle_db_error(e)

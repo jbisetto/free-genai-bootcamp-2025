@@ -36,7 +36,7 @@ class Db:
     with open(filepath, 'r') as file:
       return json.load(file)
 
-  def setup_tables(self,cursor):
+  def setup_tables(self, cursor):
     # Create the necessary tables
     cursor.execute(self.sql('setup/create_table_words.sql'))
     self.get().commit()
