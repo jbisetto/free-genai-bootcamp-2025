@@ -37,11 +37,13 @@ export default function Dashboard() {
           api.getRecentStudySession(),
           api.getStudyStats()
         ])
+        console.log('Recent Session:', recentSessionData);
+        console.log('Stats:', statsData);
         setRecentSession(recentSessionData)
         setStats(statsData)
       } catch (err) {
+        console.error('Dashboard error:', err);
         setError(err instanceof Error ? err.message : 'Failed to load dashboard data')
-        console.error('Dashboard error:', err)
       } finally {
         setLoading(false)
       }
