@@ -36,6 +36,9 @@ export default function Breadcrumbs() {
   const breadcrumbItems = pathnames.map((name, index) => {
     let displayName = routeMappings[name] || name
     
+    console.log("what is currentGroup")
+    console.log(currentGroup)
+
     // Use group, word, or activity name for the last item if available
     if (index === pathnames.length - 1 || (name !== 'launch' && index === pathnames.length - 2)) {
       if (currentGroup && name === currentGroup.id.toString()) {
