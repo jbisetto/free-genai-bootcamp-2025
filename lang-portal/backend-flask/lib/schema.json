@@ -1,0 +1,50 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Japanese Word Entry",
+    "description": "Schema for a Japanese word entry with kanji, romaji, english, and parts.",
+    "type": "object",
+    "properties": {
+      "kanji": {
+        "type": "string",
+        "description": "The kanji representation of the word."
+      },
+      "romaji": {
+        "type": "string",
+        "description": "The romaji representation of the word."
+      },
+      "english": {
+        "type": "string",
+        "description": "The English translation of the word."
+      },
+      "parts": {
+        "type": "array",
+        "description": "An array of parts that make up the word.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "kanji": {
+              "type": "string",
+              "description": "The kanji representation of the part."
+            },
+            "romaji": {
+              "type": "array",
+              "description": "An array of possible romaji readings for the part.",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "kanji",
+            "romaji"
+          ]
+        }
+      }
+    },
+    "required": [
+      "kanji",
+      "romaji",
+      "english",
+      "parts"
+    ]
+  }

@@ -1,0 +1,4 @@
+requests
+gradio
+jsonschema
+google-genai
