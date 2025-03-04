@@ -331,24 +331,57 @@ def render_interactive_stage():
             
             selected = st.radio("Choose your answer:", st.session_state.shuffled_options)
             
-            # Check answer button
-            if st.button("Check Answer"):
-                st.session_state.answered = True
-                st.session_state.correct = (selected == st.session_state.current_question["answer"])
+            # Add space after radio buttons
+            st.write("")
+            
+            # Initialize button state if not exists
+            if "button_state" not in st.session_state:
+                st.session_state.button_state = "check"
+            
+            # Button logic
+            button_label = "Next Question ➡️" if st.session_state.button_state == "next" else "Check Answer"
+            if st.button(button_label):
+                if st.session_state.button_state == "check":
+                    # Check answer logic
+                    st.session_state.answered = True
+                    st.session_state.correct = (selected == st.session_state.current_question["answer"])
+                    if st.session_state.correct:
+                        st.session_state.button_state = "next"
+                else:
+                    # Generate new question logic
+                    question_type = 4  # Default to type 4 for dialogue practice
+                    generated_content = question_generator.generate_question_json(question_type, context)
+                    st.session_state.current_question = generated_content["generated_question"][0]
+                    st.session_state.answered = False
+                    st.session_state.button_state = "check"
+                st.rerun()
+            
+            # Add space after button
+            st.write("")
+            
+            # Show feedback below button
+            if "answered" in st.session_state and st.session_state.answered:
+                if st.session_state.correct:
+                    st.markdown("### 🎯 Perfect!")
+                    st.markdown("""
+                    <div style='padding: 10px; border-radius: 5px; background-color: #d4edda; color: #155724; margin: 20px 0;'>
+                        ✨ Great understanding! Ready for the next question?
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown("### 📚 Keep Learning!")
+                    st.markdown(f"""
+                    <div style='padding: 10px; border-radius: 5px; background-color: #fff3cd; color: #856404; margin: 20px 0;'>
+                        💡 Correct answer: {st.session_state.current_question['answer']}
+                    </div>
+                    """, unsafe_allow_html=True)
         
     with col2:
         st.subheader("Audio")
-        # Placeholder for audio player - future implementation
-        st.info("Audio feature coming soon!")
+        st.info("🎵 Audio feature coming soon!")
         
         st.subheader("Feedback")
-        if "answered" in st.session_state and st.session_state.answered:
-            if st.session_state.correct:
-                st.success("Correct! Well done! 🎉")
-            else:
-                st.error(f"Not quite. The correct answer is: {st.session_state.current_question['answer']}")
-        else:
-            st.info("Select an answer and click 'Check Answer' to get feedback")
+        st.info("🤖 Detailed feedback and explanations coming soon!")
 
 def main():
     render_header()
