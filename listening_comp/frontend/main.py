@@ -1,16 +1,16 @@
 import streamlit as st
-from typing import Dict
-import json
-from collections import Counter
-import re
-
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from pathlib import Path
 
-from backend.chat import BedrockChat
-from backend.get_transcript import YouTubeTranscriptDownloader
+# Add backend directory to Python path
+backend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'backend'))
+if backend_path not in sys.path:
+    sys.path.append(backend_path)
 
+from chat import BedrockChat
+from get_transcript import YouTubeTranscriptDownloader
+from question_generator import QuestionGenerator
 
 # Page config
 st.set_page_config(
@@ -278,31 +278,78 @@ def render_interactive_stage():
     """Render the interactive learning stage"""
     st.header("Interactive Learning")
     
+    # Initialize question generator
+    question_generator = QuestionGenerator()
+    
     # Practice type selection
     practice_type = st.selectbox(
         "Select Practice Type",
         ["Dialogue Practice", "Vocabulary Quiz", "Listening Exercise"]
     )
     
+    # Context selection for question generation
+    context = st.selectbox(
+        "Select Context",
+        ["daily conversation", "shopping", "restaurant", "school", "travel"]
+    )
+    
+    # Generate new question button
+    if st.button("Generate New Question"):
+        # Store the generated question in session state
+        question_type = 4  # Default to type 4 for dialogue practice
+        generated_content = question_generator.generate_question_json(question_type, context)
+        st.session_state.current_question = generated_content["generated_question"][0]
+        st.session_state.answered = False
+    
+    # Initialize session state for current question if not exists
+    if "current_question" not in st.session_state:
+        question_type = 4
+        generated_content = question_generator.generate_question_json(question_type, context)
+        st.session_state.current_question = generated_content["generated_question"][0]
+        st.session_state.answered = False
+    
     col1, col2 = st.columns([2, 1])
     
     with col1:
         st.subheader("Practice Scenario")
-        # Placeholder for scenario
-        st.info("Practice scenario will appear here")
-        
-        # Placeholder for multiple choice
-        options = ["Option 1", "Option 2", "Option 3", "Option 4"]
-        selected = st.radio("Choose your answer:", options)
+        if "current_question" in st.session_state:
+            # Display introduction and conversation
+            st.write("**Situation:**")
+            st.write(st.session_state.current_question["introduction"])
+            st.write("**Dialogue:**")
+            st.write(st.session_state.current_question["conversation"])
+            st.write("**Question:**")
+            st.write(st.session_state.current_question["question"])
+            
+            # Create plausible options including the correct answer
+            correct_answer = st.session_state.current_question["answer"]
+            # In a real implementation, you'd want to generate these dynamically
+            options = [
+                correct_answer,
+                "Option 2 (in Japanese)",
+                "Option 3 (in Japanese)",
+                "Option 4 (in Japanese)"
+            ]
+            selected = st.radio("Choose your answer:", options)
+            
+            # Check answer button
+            if st.button("Check Answer"):
+                st.session_state.answered = True
+                st.session_state.correct = (selected == correct_answer)
         
     with col2:
         st.subheader("Audio")
-        # Placeholder for audio player
-        st.info("Audio will appear here")
+        # Placeholder for audio player - future implementation
+        st.info("Audio feature coming soon!")
         
         st.subheader("Feedback")
-        # Placeholder for feedback
-        st.info("Feedback will appear here")
+        if "answered" in st.session_state and st.session_state.answered:
+            if st.session_state.correct:
+                st.success("Correct! Well done! 🎉")
+            else:
+                st.error(f"Not quite. The correct answer is: {st.session_state.current_question['answer']}")
+        else:
+            st.info("Select an answer and click 'Check Answer' to get feedback")
 
 def main():
     render_header()

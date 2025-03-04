@@ -129,22 +129,22 @@ def main():
     print(f"Questions embedded successfully into ChromaDB in directory: {chroma_db_directory}.")
 
     # Perform a semantic search
-    user_query = input("Enter a question to search for similar questions: ")
-    search_results = embedder.semantic_search(collection_name, user_query)
+    # user_query = input("Enter a question to search for similar questions: ")
+    # search_results = embedder.semantic_search(collection_name, user_query)
 
     # Display the search results
-    print("Search Results:")
-    for i in range(len(search_results['ids'][0])):
-        result_id = search_results['ids'][0][i]
-        result_distance = search_results['distances'][0][i]
-        result_metadata = search_results['metadatas'][0][i]
+    # print("Search Results:")
+    # for i in range(len(search_results['ids'][0])):
+        # result_id = search_results['ids'][0][i]
+        # result_distance = search_results['distances'][0][i]
+        # result_metadata = search_results['metadatas'][0][i]
 
-        print(f"ID: {result_id}, Distance: {result_distance}")
-        # Print all metadata key-value pairs
-        print("Metadata:")
-        for key, value in result_metadata.items():
-            print(f"  {key}: {value}")
-        print("-" * 20)  # Separator between results
+        # print(f"ID: {result_id}, Distance: {result_distance}")
+        # # Print all metadata key-value pairs
+        # print("Metadata:")
+        # for key, value in result_metadata.items():
+        #     print(f"  {key}: {value}")
+        # print("-" * 20)  # Separator between results
 
 
 if __name__ == "__main__":

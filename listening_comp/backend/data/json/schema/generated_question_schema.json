@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "generated_question": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "introduction": {
+              "type": "string"
+            },
+            "conversation": {
+              "type": "string"
+            },
+            "question": {
+              "type": "string"
+            },
+            "answer": {
+              "type": "string"
+            }
+          },
+          "required": ["introduction", "conversation", "question", "answer"]
+        }
+      }
+    },
+    "required": ["generated_question"]
+  }
