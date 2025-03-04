@@ -19,17 +19,18 @@ class QuestionStore:
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     timestamp TEXT NOT NULL,
                     context TEXT NOT NULL,
-                    question_data TEXT NOT NULL
+                    question_data TEXT NOT NULL,
+                    ffmpeg_file_location TEXT
                 )
             """)
 
-    def save_question(self, context: str, question_data: dict) -> int:
+    def save_question(self, context: str, question_data: dict, ffmpeg_file_location: str = None) -> int:
         """Save a new question to the database"""
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
             cursor.execute(
-                "INSERT INTO questions (timestamp, context, question_data) VALUES (?, ?, ?)",
-                (datetime.now().isoformat(), context, json.dumps(question_data))
+                "INSERT INTO questions (timestamp, context, question_data, ffmpeg_file_location) VALUES (?, ?, ?, ?)",
+                (datetime.now().isoformat(), context, json.dumps(question_data), ffmpeg_file_location)
             )
             return cursor.lastrowid
 
@@ -44,7 +45,8 @@ class QuestionStore:
                 'id': row['id'],
                 'timestamp': row['timestamp'],
                 'context': row['context'],
-                'question_data': json.loads(row['question_data'])
+                'question_data': json.loads(row['question_data']),
+                'ffmpeg_file_location': row['ffmpeg_file_location']
             } for row in rows]
 
     def get_question(self, question_id: int):
@@ -59,6 +61,7 @@ class QuestionStore:
                     'id': row['id'],
                     'timestamp': row['timestamp'],
                     'context': row['context'],
-                    'question_data': json.loads(row['question_data'])
+                    'question_data': json.loads(row['question_data']),
+                    'ffmpeg_file_location': row['ffmpeg_file_location']
                 }
             return None
