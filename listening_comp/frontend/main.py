@@ -2,6 +2,7 @@ import streamlit as st
 import sys
 import os
 from pathlib import Path
+import random
 
 # Add backend directory to Python path
 backend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'backend'))
@@ -321,21 +322,19 @@ def render_interactive_stage():
             st.write("**Question:**")
             st.write(st.session_state.current_question["question"])
             
-            # Create plausible options including the correct answer
-            correct_answer = st.session_state.current_question["answer"]
-            # In a real implementation, you'd want to generate these dynamically
-            options = [
-                correct_answer,
-                "Option 2 (in Japanese)",
-                "Option 3 (in Japanese)",
-                "Option 4 (in Japanese)"
-            ]
-            selected = st.radio("Choose your answer:", options)
+            # Randomly shuffle options while preserving correct answer mapping
+            if "shuffled_options" not in st.session_state or st.session_state.get("last_question") != st.session_state.current_question["question"]:
+                options = st.session_state.current_question["options"].copy()
+                random.shuffle(options)
+                st.session_state.shuffled_options = options
+                st.session_state.last_question = st.session_state.current_question["question"]
+            
+            selected = st.radio("Choose your answer:", st.session_state.shuffled_options)
             
             # Check answer button
             if st.button("Check Answer"):
                 st.session_state.answered = True
-                st.session_state.correct = (selected == correct_answer)
+                st.session_state.correct = (selected == st.session_state.current_question["answer"])
         
     with col2:
         st.subheader("Audio")
