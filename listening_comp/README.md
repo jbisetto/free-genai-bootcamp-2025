@@ -1,3 +1,43 @@
+# Japanese Listening Comprehension Assistant
+
+## Overview
+A sophisticated language learning tool that demonstrates the evolution from basic LLM responses to a fully contextual learning assistant using RAG (Retrieval Augmented Generation). This application helps students practice Japanese listening comprehension by generating contextually relevant questions based on Japanese language content.
+
+## Key Features
+- **Progressive Learning Approach**: Demonstrates clear progression from base LLM to RAG implementation
+- **Multilingual Content Processing**: Handles both Japanese and English text effectively
+- **YouTube Transcript Integration**: Extracts and processes Japanese content from YouTube videos
+- **Question Generation**: Creates structured, contextually relevant questions in Japanese
+- **Vector-based Semantic Search**: Utilizes embeddings to find similar questions and content
+- **Interactive Learning Interface**: Streamlit-based UI for student engagement
+
+## Technical Architecture
+- **Frontend**: Streamlit application providing an intuitive learning interface
+- **Backend**: Python-based system integrating multiple AWS services
+- **Vector Store**: ChromaDB for storing and retrieving embedded Japanese language content
+- **AI Components**:
+  - Amazon Bedrock for text generation (Nova Micro model)
+  - Titan Embeddings for semantic search capabilities
+  - JSON schema validation for consistent question formatting
+
+## Setup Requirements
+- Python 3.10+
+- AWS account with Bedrock access
+- Proper IAM permissions for Amazon Bedrock services
+- ChromaDB for vector storage
+- YouTube Transcript API for content extraction
+
+## Usage
+1. Set up a conda environment: `conda create -n language-learning-assistant python=3.10`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Configure AWS credentials with appropriate permissions
+4. Run the backend: `python3 backend/main.py`
+5. Launch the frontend: `streamlit run main.py`
+
+---
+
+# Original Documentation
+
 # language-learning-assistant
 This is for the generative AI bootcamp
 
