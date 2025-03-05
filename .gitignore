@@ -5,3 +5,4 @@ backend/data/vectorstore/chroma.sqlite3
 listening_comp/backend/data/vectorstore/*
 listening_comp/backend/data/audio/*.mp3
 listening_comp/backend/data/sqlite3/*.*
+listening_comp/backend/data/vectorstore/cee3b394-5b47-4144-8168-fd2f98054359/length.bin
