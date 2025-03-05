@@ -35,17 +35,6 @@ A sophisticated language learning tool that demonstrates the evolution from basi
 5. Launch the frontend: `streamlit run main.py`
 
 ---
-
-# Original Documentation
-
-# language-learning-assistant
-This is for the generative AI bootcamp
-
-**Difficulty:** Level 200 *(Due to RAG implementation and multiple AWS services integration)*
-
-**Business Goal:**
-A progressive learning tool that demonstrates how RAG and agents can enhance language learning by grounding responses in real Japanese lesson content. The system shows the evolution from basic LLM responses to a fully contextual learning assistant, helping students understand both the technical implementation and practical benefits of RAG.
-
 **Technical Uncertainty:**
 1. How effectively can we process and structure bilingual (Japanese/English) content for RAG?
 2. What's the optimal way to chunk and embed Japanese language content?
@@ -102,8 +91,8 @@ python3 backend/main.py
 conda create -n language-learning-assistant python=3.10
 conda activate language-learning-assistant
 ```
-# AWS Notes
-## Setting up Permissions
+# AWS Setup Notes
+## IAM User Permissions
 Create a new user with the following permissions:
 ```json
 {
@@ -124,14 +113,9 @@ Create a new user with the following permissions:
 ```
 Also create a key for the user to access the AWS services. Configure the key to use the region us-east-1 after installing the AWS CLI. 
 
-# Question to cursor for vector store
-```
-Would we benefit to storing our questions in a vector store, because the app we are creating needs to reference the existing database of possible questions and generate deratives via an LLM
-```
 
-
-# Interesting take away from vector store work
-## Do I need to use Japanese text in the semantic search?
+# Notes vector store work
+## Do we need to use Japanese text in the semantic search?
 
 The `vector_store.py` script utilizes Amazon Bedrock's Titan Embeddings model to perform semantic searches on a collection of Japanese questions. This section addresses whether search queries can be in English or if Japanese is preferable, and why.
 
