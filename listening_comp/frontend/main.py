@@ -12,6 +12,8 @@ if backend_path not in sys.path:
 
 from question_generator import QuestionGenerator
 from question_store import QuestionStore
+from audio_generator import AudioGenerator
+
 
 # Page config
 st.set_page_config(
@@ -26,15 +28,10 @@ if 'question_store' not in st.session_state:
 
 # Initialize session state
 if 'current_question' not in st.session_state:
-    # Initialize with first question
-    question_generator = QuestionGenerator()
-    generated_content = question_generator.generate_question_json(4, "daily conversation")
-    if generated_content and "generated_question" in generated_content:
-        st.session_state.current_question = generated_content["generated_question"][0]
-        # Save the first question
-        st.session_state.question_store.save_question("daily conversation", st.session_state.current_question)
-        st.session_state.answered = False
-        st.session_state.button_state = "check"
+    # Do not load or generate a question on startup
+    st.session_state.current_question = None
+    st.session_state.answered = False
+    st.session_state.button_state = "check"
 
 def render_header():
     """Render the header section"""
@@ -65,12 +62,47 @@ def render_question_sidebar():
                 st.session_state.current_question = q['question_data']
                 st.session_state.answered = False
                 st.session_state.button_state = "check"
+                
+                # Check if audio file exists
+                audio_file = q.get('ffmpeg_file_location', '')
+                if not audio_file or not os.path.exists(audio_file):
+                    # Generate audio file if missing
+                    audio_generator = AudioGenerator()
+                    audio_file = audio_generator.generate_question_audio(
+                        st.session_state.current_question, q['id']
+                    )
+                    
+                    if audio_file:
+                        # Update database with new audio file path
+                        st.session_state.question_store.update_question_audio(q['id'], audio_file)
+                        st.session_state.current_question['audio_file'] = audio_file
+                
+                # Set audio file in session
+                st.session_state.current_question['audio_file'] = q.get('ffmpeg_file_location', '')
+                
+                # Debug: Print session context
+                print("\n=== Session Context ===")
+                print(f"Current Question: {st.session_state.current_question}")
+                print(f"Answered: {st.session_state.answered}")
+                print(f"Button State: {st.session_state.button_state}")
+                print(f"Audio File Path: {st.session_state.current_question['audio_file']}")
+                print("=======================\n")
+
+                # Show debug window with stored question data
+                question_data = {
+                    'context': q.get('context', ''),
+                    'question': q['question_data'],
+                    'audio_file': q.get('audio_file', ''),
+                    'question_id': q['id']
+                }
+                render_debug_window(question_data)
                 st.rerun()
 
 def render_interactive_learning():
     """Render the interactive learning stage"""
-    # Initialize question generator
+    # Initialize question generator and audio generator
     question_generator = QuestionGenerator()
+    audio_generator = AudioGenerator()
     
     # Context selection for question generation
     context = st.selectbox(
@@ -80,21 +112,51 @@ def render_interactive_learning():
     
     # Generate new question button
     if st.button("Generate New Question"):
-        # Store the generated question in session state
+        # Generate the question
         question_type = 4  # Default to type 4 for dialogue practice
         generated_content = question_generator.generate_question_json(question_type, context)
+        
         if generated_content and "generated_question" in generated_content:
-            st.session_state.current_question = generated_content["generated_question"][0]
-            # Save the new question
-            st.session_state.question_store.save_question(context, st.session_state.current_question)
-            st.session_state.answered = False
-            st.session_state.button_state = "check"
+            current_question = generated_content["generated_question"][0]
+            
+             # Save the question first to get an ID
+            question_id = st.session_state.question_store.save_question(
+            context, 
+            current_question
+            )
+
+            # Generate audio file
+            audio_file = audio_generator.generate_question_audio(current_question, question_id)
+            print("\n=== Audio_File ===")
+            print(f"Audio File: {audio_file}")
+            print("===============================\n")
+            
+            if audio_file:
+                st.session_state.question_store.update_question_audio(question_id, audio_file)
+            
+                # Update session state
+                st.session_state.current_question = current_question
+                st.session_state.current_question['audio_file'] = audio_file
+                st.session_state.answered = False
+                st.session_state.button_state = "check"
+                    
+                # Show debug window
+                question_data = {
+                    'context': context,
+                    'question': current_question,
+                    'audio_file': audio_file,
+                    'question_id': question_id
+                } 
+                render_debug_window(question_data)
+            else:
+                st.error("Failed to generate audio for the question")
     
     col1, col2 = st.columns([2, 1])
     
     with col1:
         st.subheader("Practice Scenario")
         if "current_question" in st.session_state and st.session_state.current_question:
+           
             # Display introduction and conversation
             st.write("**Situation:**")
             st.write(st.session_state.current_question.get("introduction", ""))
@@ -158,10 +220,27 @@ def render_interactive_learning():
         
     with col2:
         st.subheader("Audio")
-        st.info("🎵 Audio feature coming soon!")
+        if "current_question" in st.session_state and st.session_state.current_question:
+            # Get the audio file path from the question data
+            audio_file = st.session_state.current_question.get("audio_file", "")
+            
+            if audio_file and os.path.exists(audio_file):
+                # Display audio player
+                audio_bytes = open(audio_file, 'rb').read()
+                st.audio(audio_bytes, format='audio/mp3')
+            else:
+                st.warning("Audio file not found")
+        else:
+            st.info("Generate a question to hear its audio")
         
         st.subheader("Feedback")
         st.info("🤖 Detailed feedback and explanations coming soon!")
+
+def render_debug_window(question_data):
+    """Render a debug window showing question data"""
+    with st.expander("Debug Information"):
+        st.subheader("Question Data")
+        st.json(question_data)
 
 def main():
     render_header()
