@@ -11,9 +11,9 @@ class AudioGenerator:
         
         # Updated voice mapping with distinct voices
         self.voices = {
-            'announcer': 'Takumi',  # Male voice for announcer
-            'male': 'Kazuha',       # Different male voice
-            'female': 'Mizuki'      # Female voice
+            'announcer': 'Kazuha',  # Female voice for announcer
+            'male': 'Takumi',       # Male voice
+            'female': 'Tomoko'      # DifferentFemale voice
         }
 
     def _generate_audio_segment(self, text, voice, output_path):
@@ -34,14 +34,15 @@ class AudioGenerator:
             for file in files:
                 f.write(f"file '{file}'\n")
         
-        # Use ffmpeg to combine audio files
+        # Use ffmpeg to combine audio files into an MP3
         subprocess.run([
             'ffmpeg',
             '-f', 'concat',
             '-safe', '0',
             '-i', list_file,
-            '-c', 'copy',
-            output_path
+            '-c:a', 'libmp3lame',  # Use libmp3lame codec for MP3
+            '-b:a', '192k',  # Set bitrate
+            output_path.replace('.mpeg', '.mp3')  # Change extension to .mp3
         ])
         
         # Clean up temporary files
@@ -50,6 +51,10 @@ class AudioGenerator:
             os.remove(file)
 
     def generate_question_audio(self, question, question_id):
+        print("\n=== Generate_Question_Audio ===")
+        print(f"Question ID: {question_id}")
+        print(f"Question: {question}")
+        print("===============================\n")
         try:
             # Generate audio segments
             temp_files = []
@@ -82,11 +87,15 @@ class AudioGenerator:
             temp_files.append(question_file)
             
             # Combine audio files
-            output_file = os.path.join(self.audio_dir, f'question_{question_id}.mpeg')
+            output_file = os.path.join(self.audio_dir, f'question_{question_id}.mp3')
             self._combine_audio_files(temp_files, output_file)
             
             return output_file
             
         except Exception as e:
             print(f"Error generating audio: {str(e)}")
+            # Clean up temporary files in case of error
+            for file in temp_files:
+                if os.path.exists(file):
+                    os.remove(file)
             return None
