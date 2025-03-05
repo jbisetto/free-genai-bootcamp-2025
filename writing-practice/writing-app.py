@@ -12,16 +12,27 @@ from PIL import Image
 logger = logging.getLogger("Writing Practice App")
 logger.setLevel(logging.DEBUG)
 
-# Create a file handler
-file_handler = logging.FileHandler("writing-practice.log")
-file_handler.setLevel(logging.DEBUG)
+# Check if the logger already has handlers to prevent duplicates
+if not logger.handlers:
+    # Create a file handler
+    file_handler = logging.FileHandler("writing-practice.log")
+    file_handler.setLevel(logging.DEBUG)
+    
+    # Create a formatter and add it to the handler
+    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    file_handler.setFormatter(formatter)
+    
+    # Add the file handler to the logger
+    logger.addHandler(file_handler)
+    
+    logger.debug("Logger initialized")
 
-# Create a formatter and add it to the handler
-formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-file_handler.setFormatter(formatter)
-
-# Add the file handler to the logger
-logger.addHandler(file_handler)
+try:
+    from manga_ocr import MangaOcr
+except ImportError:
+    logger.error("MangaOCR is not installed. Please install it using pip: pip install manga-ocr")
+    st.error("MangaOCR is not installed. Please install it using pip: pip install manga-ocr")
+    st.stop()
 
 # Set page configuration
 st.set_page_config(
@@ -185,42 +196,79 @@ def translate_to_english(text_jp):
         # Fallback to a simple translation if the API call fails
         return "Translation failed. Please try again."
 
-def grade_translation(text, reference_text):
-    prompt = f"""Grade the following piece of text based on the reference text:
-{text}. Provide a letter score using the japanase S Rank to score the user's translation.
-Provide an evaluation of the user's translation with suggestions for improvement."""
+def grade_translation(japanese_text, english_reference):
+    logger.debug(f"Grading translation - Japanese: {japanese_text}, English Reference: {english_reference}")
+
+    prompt = f"""You are a Japanese language teacher evaluating a student's writing.
+
+Task: Grade the following Japanese text by comparing it to the English reference text.
+
+Japanese text written by student: {japanese_text}
+English reference text: {english_reference}
+
+Please evaluate:
+1. Accuracy - Does the Japanese text convey the same meaning as the English reference?
+2. Grammar - Is the Japanese text grammatically correct?
+3. Word choice - Are appropriate Japanese words and phrases used?
+4. Overall quality - How well does the Japanese text express the intended meaning?
+
+Provide a letter score using the Japanese S-A-B-C-D ranking system (S being the highest).
+Include specific suggestions for improvement and highlight any strengths in the student's writing.
+"""
     try:
         response = model.generate_content(prompt)
+        logger.debug(f"API response: {response.text.strip()}")
         return response.text.strip()
     except Exception as e:
         logger.error(f"Error grading translation: {str(e)}")
         # Fallback to a simple grade if the API call fails
         return "B - Good effort! Keep practicing."
 
-# Mock MangaOCR function (in a real app, you would integrate the actual OCR library)
+# MangaOCR function to extract Japanese text from images
 def transcribe_image(image_file):
-    # This is a placeholder for MangaOCR integration
-    # In a real implementation, you would use the MangaOCR library to transcribe the image
+    """
+    Use MangaOCR to extract Japanese text from the uploaded image.
     
-    # For demo purposes, return a placeholder text based on the current sentence
-    logger.debug(f"Transcribing image: {image_file.name}")
+    Args:
+        image_file: The uploaded image file from Streamlit
     
-    # In a real implementation, you would process the image here
-    # For now, we'll generate mock Japanese text based on the current word
-    current_word = st.session_state.current_word
-    
-    # Map of English words to Japanese mock translations
-    mock_translations = {
-        "book": "これは本です。",  # This is a book.
-        "car": "私は車を持っています。",  # I have a car.
-        "house": "彼の家は大きいです。",  # His house is big.
-        "read": "私は毎日本を読みます。",  # I read books every day.
-        "eat": "私は朝ごはんを食べました。",  # I ate breakfast.
-        # Add more mappings for other words
-    }
-    
-    # Return a mock translation based on the current word, or a default if not found
-    return mock_translations.get(current_word, "日本語のテキスト例です。")
+    Returns:
+        str: The extracted Japanese text from the image
+    """
+    try:
+        logger.debug(f"Transcribing image: {image_file.name}")
+         
+        # Initialize MangaOCR (this will download the model if it's the first time)
+        mocr = MangaOcr()
+        
+        # Open the image using PIL (already imported at the top)
+        img = Image.open(image_file)
+        
+        # Perform OCR on the image
+        extracted_text = mocr(img)
+        
+        logger.debug(f"Extracted text: {extracted_text}")
+        
+        # Return the extracted text
+        return extracted_text
+    except Exception as e:
+        logger.error(f"Error transcribing image: {str(e)}")
+        
+        # Fallback to mock translations if OCR fails
+        current_word = st.session_state.get('current_word', '')
+        
+        # Map of English words to Japanese mock translations (as a fallback)
+        mock_translations = {
+            "book": "これは本です。",  # This is a book.
+            "car": "私は車を持っています。",  # I have a car.
+            "house": "彼の家は大きいです。",  # His house is big.
+            "read": "私は毎日本を読みます。",  # I read books every day.
+            "eat": "私は朝ごはんを食べました。",  # I ate breakfast.
+            # Add more mappings for other words
+        }
+        
+        # Return a mock translation based on the current word, or a default if not found
+        return mock_translations.get(current_word, "日本語のテキスト例です。") + " (Fallback text)"
 
 # Main Streamlit app
 st.title("Japanese Writing Practice")
@@ -308,7 +356,7 @@ elif st.session_state.state == "practice":
             
             # Grade the translation
             st.session_state.evaluation_report = grade_translation(
-                translated_user_text_en, 
+                st.session_state.user_translation_jp, 
                 st.session_state.current_sentence_en
             )
             
