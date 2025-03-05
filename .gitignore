@@ -1,1 +1,7 @@
 .DS_Store
+writing-practice/writing-practice.log
+writing-practice/writing-practice.log
+backend/data/vectorstore/chroma.sqlite3
+listening_comp/backend/data/vectorstore/*
+listening_comp/backend/data/audio/*.mp3
+listening_comp/backend/data/sqlite3/*.*
