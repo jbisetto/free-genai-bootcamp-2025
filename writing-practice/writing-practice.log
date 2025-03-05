@@ -1966,3 +1966,94 @@ The student demonstrates a strong understanding of basic sentence structure, cor
 2025-03-05 15:43:12,748 - Writing Practice App - DEBUG - Response status: 403
 2025-03-05 15:43:12,748 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
 2025-03-05 15:43:12,748 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 15:50:46,784 - Writing Practice App - DEBUG - Logger initialized
+2025-03-05 15:50:48,787 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 15:50:48,787 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 15:50:48,793 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 15:50:48,794 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 15:50:48,794 - Writing Practice App - DEBUG - API health check content: 
+2025-03-05 15:50:48,794 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue or CORS problem.
+2025-03-05 15:50:48,794 - Writing Practice App - ERROR - Response content: 
+2025-03-05 15:50:48,794 - Writing Practice App - DEBUG - API available: False
+2025-03-05 15:50:48,796 - Writing Practice App - DEBUG - Query parameters: {}
+2025-03-05 15:50:48,796 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 15:50:48,796 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 15:50:48,798 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 15:50:48,798 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 15:50:48,798 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 15:57:52,712 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5001/api
+2025-03-05 15:57:52,712 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5001/api/health
+2025-03-05 15:57:52,714 - Writing Practice App - ERROR - API connection error: HTTPConnectionPool(host='localhost', port=5001): Max retries exceeded with url: /api/health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16714f4f0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-05 15:57:52,714 - Writing Practice App - ERROR - This likely means the backend server is not running. Start it with 'python app.py' in the backend-flask directory.
+2025-03-05 15:57:52,714 - Writing Practice App - DEBUG - API available: False
+2025-03-05 15:57:52,714 - Writing Practice App - DEBUG - Query parameters: {}
+2025-03-05 15:57:52,715 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 15:57:52,715 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5001/api/groups/1/words/raw
+2025-03-05 15:57:52,716 - Writing Practice App - ERROR - Exception while getting words: HTTPConnectionPool(host='localhost', port=5001): Max retries exceeded with url: /api/groups/1/words/raw (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16714d0c0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-05 15:57:54,578 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5001/api
+2025-03-05 15:57:54,578 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5001/api/health
+2025-03-05 15:57:54,581 - Writing Practice App - ERROR - API connection error: HTTPConnectionPool(host='localhost', port=5001): Max retries exceeded with url: /api/health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16714f130>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-05 15:57:54,581 - Writing Practice App - ERROR - This likely means the backend server is not running. Start it with 'python app.py' in the backend-flask directory.
+2025-03-05 15:57:54,581 - Writing Practice App - DEBUG - API available: False
+2025-03-05 15:57:54,581 - Writing Practice App - DEBUG - Query parameters: {}
+2025-03-05 15:57:54,582 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 15:57:54,582 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5001/api/groups/1/words/raw
+2025-03-05 15:57:54,584 - Writing Practice App - ERROR - Exception while getting words: HTTPConnectionPool(host='localhost', port=5001): Max retries exceeded with url: /api/groups/1/words/raw (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16714f5b0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-05 15:57:56,731 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5001/api
+2025-03-05 15:57:56,731 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5001/api/health
+2025-03-05 15:57:56,734 - Writing Practice App - ERROR - API connection error: HTTPConnectionPool(host='localhost', port=5001): Max retries exceeded with url: /api/health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16714ee00>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-05 15:57:56,734 - Writing Practice App - ERROR - This likely means the backend server is not running. Start it with 'python app.py' in the backend-flask directory.
+2025-03-05 15:57:56,734 - Writing Practice App - DEBUG - API available: False
+2025-03-05 15:57:56,735 - Writing Practice App - DEBUG - Query parameters: {}
+2025-03-05 15:57:56,736 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 15:57:56,736 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5001/api/groups/1/words/raw
+2025-03-05 15:57:56,738 - Writing Practice App - ERROR - Exception while getting words: HTTPConnectionPool(host='localhost', port=5001): Max retries exceeded with url: /api/groups/1/words/raw (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x16714f8e0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-03-05 15:58:23,496 - Writing Practice App - DEBUG - Logger initialized
+2025-03-05 15:58:25,417 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5001/api
+2025-03-05 15:58:25,417 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5001/api/health
+2025-03-05 15:58:25,423 - Writing Practice App - DEBUG - API health check response: 200
+2025-03-05 15:58:25,423 - Writing Practice App - DEBUG - API health check headers: {'Server': 'Werkzeug/3.1.3 Python/3.10.16', 'Date': 'Wed, 05 Mar 2025 20:58:25 GMT', 'Content-Type': 'application/json', 'Content-Length': '26', 'Access-Control-Allow-Origin': 'http://localhost:8501', 'Access-Control-Expose-Headers': 'Authorization, Content-Type', 'Access-Control-Allow-Credentials': 'true', 'Vary': 'Origin', 'Connection': 'close'}
+2025-03-05 15:58:25,423 - Writing Practice App - DEBUG - API health check content: {
+  "status": "healthy"
+}
+
+2025-03-05 15:58:25,423 - Writing Practice App - INFO - API health check successful
+2025-03-05 15:58:25,423 - Writing Practice App - DEBUG - API available: True
+2025-03-05 15:58:25,424 - Writing Practice App - DEBUG - Query parameters: {}
+2025-03-05 15:58:25,425 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 15:58:25,425 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5001/api/groups/1/words/raw
+2025-03-05 15:58:25,433 - Writing Practice App - DEBUG - Response status: 200
+2025-03-05 15:58:25,433 - Writing Practice App - DEBUG - Response headers: {'Server': 'Werkzeug/3.1.3 Python/3.10.16', 'Date': 'Wed, 05 Mar 2025 20:58:25 GMT', 'Content-Type': 'application/json', 'Content-Length': '1732', 'Access-Control-Allow-Origin': '*', 'Connection': 'close'}
+2025-03-05 15:58:25,433 - Writing Practice App - DEBUG - Successfully retrieved 3 words
+2025-03-05 16:00:03,836 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5001/api
+2025-03-05 16:00:03,837 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5001/api/health
+2025-03-05 16:00:03,844 - Writing Practice App - DEBUG - API health check response: 200
+2025-03-05 16:00:03,845 - Writing Practice App - DEBUG - API health check headers: {'Server': 'Werkzeug/3.1.3 Python/3.10.16', 'Date': 'Wed, 05 Mar 2025 21:00:03 GMT', 'Content-Type': 'application/json', 'Content-Length': '26', 'Access-Control-Allow-Origin': 'http://localhost:8501', 'Access-Control-Expose-Headers': 'Authorization, Content-Type', 'Access-Control-Allow-Credentials': 'true', 'Vary': 'Origin', 'Connection': 'close'}
+2025-03-05 16:00:03,845 - Writing Practice App - DEBUG - API health check content: {
+  "status": "healthy"
+}
+
+2025-03-05 16:00:03,845 - Writing Practice App - INFO - API health check successful
+2025-03-05 16:00:03,845 - Writing Practice App - DEBUG - API available: True
+2025-03-05 16:00:03,846 - Writing Practice App - DEBUG - Query parameters: {}
+2025-03-05 16:00:03,847 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 16:00:03,847 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5001/api/groups/1/words/raw
+2025-03-05 16:00:03,855 - Writing Practice App - DEBUG - Response status: 200
+2025-03-05 16:00:03,855 - Writing Practice App - DEBUG - Response headers: {'Server': 'Werkzeug/3.1.3 Python/3.10.16', 'Date': 'Wed, 05 Mar 2025 21:00:03 GMT', 'Content-Type': 'application/json', 'Content-Length': '1732', 'Access-Control-Allow-Origin': '*', 'Connection': 'close'}
+2025-03-05 16:00:03,856 - Writing Practice App - DEBUG - Successfully retrieved 3 words
+2025-03-05 16:00:24,122 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5001/api
+2025-03-05 16:00:24,123 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5001/api/health
+2025-03-05 16:00:24,134 - Writing Practice App - DEBUG - API health check response: 200
+2025-03-05 16:00:24,134 - Writing Practice App - DEBUG - API health check headers: {'Server': 'Werkzeug/3.1.3 Python/3.10.16', 'Date': 'Wed, 05 Mar 2025 21:00:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '26', 'Access-Control-Allow-Origin': 'http://localhost:8501', 'Access-Control-Expose-Headers': 'Authorization, Content-Type', 'Access-Control-Allow-Credentials': 'true', 'Vary': 'Origin', 'Connection': 'close'}
+2025-03-05 16:00:24,134 - Writing Practice App - DEBUG - API health check content: {
+  "status": "healthy"
+}
+
+2025-03-05 16:00:24,134 - Writing Practice App - INFO - API health check successful
+2025-03-05 16:00:24,135 - Writing Practice App - DEBUG - API available: True
+2025-03-05 16:00:24,135 - Writing Practice App - DEBUG - Query parameters: {}
+2025-03-05 16:00:24,137 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 16:00:24,138 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5001/api/groups/1/words/raw
+2025-03-05 16:00:24,147 - Writing Practice App - DEBUG - Response status: 200
+2025-03-05 16:00:24,148 - Writing Practice App - DEBUG - Response headers: {'Server': 'Werkzeug/3.1.3 Python/3.10.16', 'Date': 'Wed, 05 Mar 2025 21:00:24 GMT', 'Content-Type': 'application/json', 'Content-Length': '1732', 'Access-Control-Allow-Origin': '*', 'Connection': 'close'}
+2025-03-05 16:00:24,148 - Writing Practice App - DEBUG - Successfully retrieved 3 words

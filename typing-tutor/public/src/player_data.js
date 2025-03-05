@@ -16,7 +16,7 @@ class PlayerData {
 
 	async send_review(wordId, correct) {
 		try {
-			const apiUrl = `http://127.0.0.1:5000/study_sessions/${Data.study_session_id}/review`;  // Correct URL
+			const apiUrl = `http://127.0.0.1:5001/study_sessions/${Data.study_session_id}/review`;  // Updated port from 5000 to 5001
 			const response = await fetch(`${apiUrl}`, {
 				method: 'POST',
 				headers: {

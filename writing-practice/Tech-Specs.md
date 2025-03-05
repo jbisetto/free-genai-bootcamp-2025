@@ -2,7 +2,7 @@
 The application will be a single page application that will be built using Streamlit and will run on port 8081.
 
 ## Initialization 
-1. Use GET localhost:5000/api/groups/<int:id>/words/raw to get a JSON response with japanese words and their english translations.
+1. Use GET localhost:5001/api/groups/<int:id>/words/raw to get a JSON response with japanese words and their english translations.
 2. The words will be usedto generate a list of sentences in english.
 3. An LLM will be used to construct a simple sentence containing one of the words.
 4. An LLM will be user to transcribe the english sentence into japamese.

@@ -30,7 +30,7 @@ if not api_key:
 client = genai.Client(api_key=api_key)
 
 # API endpoint
-API_ENDPOINT = "http://localhost:5000/api/groups/"  # Base URL
+API_ENDPOINT = "http://localhost:5001/api/groups/"  # Updated port from 5000 to 5001
 
 # Function to get words from the API
 def get_words(group_id):

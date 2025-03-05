@@ -54,7 +54,7 @@ genai.configure(api_key=api_key)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 # API endpoint
-API_ENDPOINT = "http://localhost:5000/api"  # Base URL
+API_ENDPOINT = "http://localhost:5001/api"  # Changed port from 5000 to 5001
 
 # Add a debug message to show the API endpoint
 logger.debug(f"Using API endpoint: {API_ENDPOINT}")
@@ -63,15 +63,30 @@ logger.debug(f"Using API endpoint: {API_ENDPOINT}")
 def test_api_connection():
     try:
         logger.debug(f"Testing API connection to {API_ENDPOINT}/health")
-        response = requests.get(f"{API_ENDPOINT}/health", timeout=5)  # Increased timeout
+        
+        # Add headers that might help with CORS and authentication
+        headers = {
+            'Origin': 'http://localhost:8501',  # Streamlit default port
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+        
+        response = requests.get(
+            f"{API_ENDPOINT}/health", 
+            headers=headers,
+            timeout=5
+        )
+        
         logger.debug(f"API health check response: {response.status_code}")
         logger.debug(f"API health check headers: {response.headers}")
+        logger.debug(f"API health check content: {response.text}")
         
         if response.status_code == 200:
             logger.info("API health check successful")
             return True
         elif response.status_code == 403:
-            logger.error(f"API health check failed with 403 Forbidden. This may indicate an authentication issue.")
+            logger.error(f"API health check failed with 403 Forbidden. This may indicate an authentication issue or CORS problem.")
+            logger.error(f"Response content: {response.text}")
             return False
         elif response.status_code == 404:
             logger.error(f"API health check failed with 404 Not Found. The health endpoint may not exist.")
@@ -81,6 +96,7 @@ def test_api_connection():
             return False
     except requests.exceptions.ConnectionError as e:
         logger.error(f"API connection error: {str(e)}")
+        logger.error("This likely means the backend server is not running. Start it with 'python app.py' in the backend-flask directory.")
         return False
     except requests.exceptions.Timeout as e:
         logger.error(f"API request timed out: {str(e)}")
