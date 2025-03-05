@@ -30,9 +30,14 @@ class AudioGenerator:
     def _combine_audio_files(self, files, output_path):
         # Create a temporary file with list of files to combine
         list_file = os.path.join(self.audio_dir, 'filelist.txt')
+        separator_path = os.path.join(self.audio_dir, 'util', 'separator_sound.mp3')
+        
         with open(list_file, 'w') as f:
-            for file in files:
+            for i, file in enumerate(files):
                 f.write(f"file '{file}'\n")
+                # Add separator sound after introduction and conversation
+                if i < len(files) - 1:  # Add separator between segments
+                    f.write(f"file '{separator_path}'\n")
         
         # Use ffmpeg to combine audio files into an MP3
         subprocess.run([
