@@ -4,6 +4,8 @@ import logging
 import sys  # Add this import
 from werkzeug.serving import WSGIRequestHandler
 
+WSGIRequestHandler.protocol_version = "HTTP/1.1"  # Add this line at the top
+
 from lib.db import Db
 
 import routes.words
@@ -86,7 +88,11 @@ def test_logging():
     print("Direct print statement")  # Add a direct print for testing
     return jsonify({"message": "Test successful"})
 
-WSGIRequestHandler.protocol_version = "HTTP/1.1"  # Add this line at the top
+# Add a health endpoint
+@app.route('/api/health')
+def health_check():
+    logger.info("Health check endpoint called")
+    return jsonify({"status": "healthy"}), 200
 
 @app.before_request
 def log_request():

@@ -1,1 +1,1104 @@
-2025-02-16 23:09:04,155 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:23:40,260 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:23:40,260 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:23:40,265 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:23:40,265 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:23:40,265 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:23:40,265 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:23:40,319 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:23:40,320 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:23:40,320 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:23:40,322 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:23:40,322 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:23:40,322 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:11,234 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:11,234 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:11,234 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:11,234 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:11,239 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:11,239 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:11,240 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:11,240 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:11,240 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:11,240 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:11,240 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:11,240 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:11,241 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:11,241 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:11,242 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:11,242 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:11,242 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:11,242 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:11,245 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:11,245 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:11,245 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:11,245 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:11,246 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:11,246 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:28,554 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:28,554 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:28,554 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:28,554 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:28,554 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:28,554 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:28,560 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:28,560 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:28,560 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:28,560 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:28,560 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:28,560 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:28,560 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:28,560 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:28,560 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:28,560 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:28,560 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:28,560 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:28,561 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:28,561 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:28,561 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:28,562 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:28,562 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:28,562 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:28,563 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:28,563 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:28,563 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:28,567 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:28,567 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:28,567 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:28,567 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:28,567 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:28,567 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:28,567 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:28,567 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:28,567 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:29,165 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:29,165 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:29,165 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:29,165 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:29,165 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:29,165 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:29,165 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:29,165 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:29,170 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:29,170 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:29,170 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:29,170 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:29,170 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:29,170 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:29,170 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:29,170 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:29,170 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:29,170 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:29,170 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:29,170 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:29,171 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:29,171 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:29,171 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:29,171 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:29,171 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:29,171 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:29,171 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:29,171 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:29,172 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:29,172 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:29,172 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:29,172 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:29,172 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:29,172 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:29,172 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:29,172 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:29,175 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:29,175 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:29,175 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:29,175 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:29,175 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:29,175 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:29,175 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:29,175 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:29,175 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:29,175 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:29,175 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:29,175 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:36,479 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:36,479 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:36,479 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:36,479 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:36,479 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:24:36,483 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:36,483 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:36,483 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:36,483 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:36,483 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:24:36,486 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:36,486 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:36,486 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:36,486 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:36,486 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:24:36,486 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:36,486 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:36,486 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:36,486 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:36,486 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:36,487 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:36,487 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:36,487 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:36,487 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:36,487 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:24:36,487 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:36,487 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:36,487 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:36,487 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:36,487 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:24:36,488 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:36,488 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:36,488 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:36,488 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:36,488 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x11ee822f0>
+2025-03-05 13:24:36,489 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:36,489 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:36,489 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:36,489 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:36,489 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:24:36,489 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:36,489 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:36,489 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:36,489 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:36,489 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:24:36,492 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:36,492 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:36,492 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:36,492 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:36,492 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:24:36,492 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:36,492 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:36,492 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:36,492 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:36,492 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:24:36,493 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:36,493 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:36,493 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:36,493 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:24:36,493 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:25:58,299 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:25:58,299 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:25:58,303 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:25:58,303 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:58,303 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:25:58,303 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:25:58,358 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:25:58,359 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:25:58,359 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:25:58,361 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:25:58,361 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:58,361 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:25:59,244 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:25:59,244 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:25:59,245 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:25:59,245 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:25:59,248 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:25:59,248 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:25:59,248 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:59,248 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:59,249 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:25:59,249 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:25:59,249 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:25:59,249 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:25:59,249 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:25:59,249 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:25:59,250 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:25:59,250 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:25:59,250 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:25:59,250 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:25:59,253 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:25:59,253 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:25:59,254 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:59,254 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:59,254 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:25:59,254 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:25:59,328 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:25:59,328 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:25:59,328 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:25:59,328 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:25:59,328 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:25:59,328 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:25:59,330 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:25:59,330 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:25:59,330 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:59,331 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:25:59,331 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:25:59,331 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:25:59,331 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:25:59,333 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:25:59,333 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:25:59,333 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:25:59,333 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:59,333 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:59,333 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:25:59,333 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:25:59,333 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:25:59,333 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:03,515 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:03,515 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:03,515 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:03,515 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:03,516 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:03,516 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:03,516 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:03,516 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:03,522 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:03,522 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:03,522 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:03,522 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:03,522 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:03,523 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:03,523 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:03,523 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:03,523 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:03,524 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:03,524 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:03,524 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:03,524 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:03,525 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:03,525 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:03,525 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:03,525 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:03,529 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:03,529 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:03,529 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:03,529 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:03,529 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:03,529 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:03,529 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:03,529 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:03,529 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:03,529 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:03,529 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:03,529 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:04,022 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:04,022 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:04,022 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:04,022 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:04,022 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:04,023 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:04,023 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:04,023 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:04,023 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:04,023 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:04,026 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:04,026 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:04,026 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:04,026 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:04,026 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:04,026 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:04,026 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:04,026 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:04,026 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:04,026 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:04,026 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:04,026 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:04,026 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:04,026 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:04,026 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:04,027 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:04,027 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:04,027 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:04,027 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:04,027 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:04,027 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:04,027 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:04,027 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:04,027 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:04,027 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:04,028 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:04,028 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:04,028 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:04,028 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:04,028 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:04,028 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:04,028 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:04,028 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:04,028 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:04,028 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:04,031 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:04,031 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:04,031 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:04,031 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:04,031 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:04,031 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:04,031 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:04,031 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:04,031 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:04,031 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:04,031 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:04,031 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:04,031 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:04,031 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:04,031 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:08,535 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:08,538 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:08,538 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:08,538 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:08,538 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:08,538 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:08,538 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,539 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:08,539 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:08,539 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:08,539 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:08,539 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:08,539 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:08,539 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:08,542 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:08,542 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:08,542 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:08,542 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:08,542 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:08,542 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:08,543 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,547 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:08,547 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:08,547 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:08,547 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:08,547 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:08,547 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:08,547 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:19,661 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:19,661 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:19,661 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:19,661 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:19,661 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:19,661 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:19,661 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:19,662 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:19,662 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:19,662 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:19,662 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:19,662 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:19,662 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:19,662 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,669 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,669 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:19,669 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:19,669 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:19,669 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:19,669 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:19,669 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:19,669 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:19,670 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:19,670 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:19,670 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:19,670 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:19,670 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:19,670 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:19,670 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:19,671 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:19,671 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:19,671 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:19,671 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:19,671 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:19,671 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:19,671 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:19,672 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:19,672 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:19,672 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:19,672 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:19,672 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:19,672 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:19,672 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:19,673 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:19,673 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:19,673 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:19,673 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:19,673 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:19,673 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:19,673 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:19,677 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:19,677 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:19,677 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:19,677 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:19,677 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:19,677 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:19,677 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:19,678 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,678 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,678 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,678 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,678 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,678 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,678 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:19,678 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:19,678 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:19,678 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:19,678 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:19,678 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:19,678 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:19,678 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:19,686 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:26:19,686 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:26:19,686 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:26:19,686 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:26:19,686 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:26:19,686 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:26:19,686 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:20,772 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,777 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:20,777 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:20,777 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:20,777 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:20,777 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:20,777 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:20,777 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:20,777 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:20,777 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:20,778 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,781 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:26:20,781 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:20,781 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:20,781 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:20,781 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:20,781 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:20,781 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:20,781 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:26:20,781 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:30,263 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,267 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:30,267 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:30,267 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:30,267 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:30,267 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:30,267 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:30,267 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:30,267 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:30,267 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:30,267 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:30,268 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:30,268 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:30,268 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:30,268 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:30,268 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:30,268 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:30,268 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:30,268 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:30,268 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:30,269 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:30,269 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:30,269 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:30,269 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:30,269 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:30,269 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:30,269 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:30,269 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:30,269 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:30,270 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:30,270 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:30,270 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:30,270 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:30,270 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:30,270 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:30,270 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:30,270 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:30,270 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,273 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:30,273 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:30,273 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:30,273 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:30,273 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:30,273 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:30,273 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:30,273 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:30,273 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:30,273 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:37,245 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:37,245 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:37,245 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:37,245 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:37,245 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:37,245 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:37,245 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:37,245 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:37,245 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:37,245 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:37,246 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:37,246 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:37,246 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:37,246 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:37,246 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:37,246 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:37,246 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:37,246 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:37,246 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:37,246 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,250 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,250 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:37,250 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:37,250 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:37,250 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:37,250 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:37,250 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:37,250 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:37,250 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:37,250 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:37,250 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:37,251 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x137bca2f0>
+2025-03-05 13:27:37,252 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:37,252 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:37,252 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:37,252 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:37,252 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:37,252 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:37,252 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:37,252 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:37,252 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:37,252 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:37,253 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:37,253 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:37,253 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:37,253 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:37,253 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:37,253 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:37,253 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:37,253 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:37,253 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:37,253 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,256 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:37,256 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:37,256 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:37,256 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:37,256 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:37,256 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:37,256 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:37,256 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:37,256 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:37,256 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:37,256 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:27:50,846 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:27:50,846 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:27:50,850 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:27:50,850 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:50,850 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:27:50,851 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:27:50,908 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:27:50,909 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:27:50,909 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:27:50,912 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:27:50,912 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:27:50,912 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:13,789 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:13,789 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:13,790 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:13,790 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:13,795 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:13,795 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:13,796 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:13,796 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:13,796 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:13,796 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:13,796 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:13,796 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:13,797 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:13,797 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:13,798 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:13,798 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:13,798 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:13,798 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:13,803 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:13,803 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:13,803 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:13,803 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:13,803 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:13,803 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:14,295 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:14,295 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:14,295 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:14,296 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:14,296 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:14,296 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:14,300 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:14,300 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:14,300 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:14,300 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:14,300 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:14,300 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:14,300 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:14,300 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:14,300 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:14,301 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:14,304 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:14,304 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:14,304 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:14,304 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:14,304 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:14,304 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:14,305 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:14,305 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:14,305 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:22,917 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:22,917 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:22,917 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:22,917 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:22,918 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:22,918 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:22,918 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:22,918 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:22,922 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:22,922 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:22,922 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:22,922 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:22,923 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:22,923 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:22,923 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:22,923 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:22,923 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:22,923 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:22,923 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:22,923 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:22,923 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:22,923 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:22,923 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:22,923 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:22,924 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:22,924 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:22,924 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:22,924 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:22,925 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:22,925 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:22,925 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:22,925 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:22,925 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:22,925 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:22,925 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:22,925 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:22,929 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:22,929 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:22,929 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:22,929 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:22,929 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:22,929 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:22,929 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:22,929 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:22,930 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:22,930 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:22,930 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:22,930 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:30,068 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:30,068 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:30,068 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:30,068 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:30,068 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:30,069 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:30,069 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:30,069 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:30,069 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:30,069 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:30,075 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:30,075 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:30,075 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:30,075 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:30,075 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:30,076 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:30,076 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:30,076 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:30,076 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:30,076 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:30,076 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:30,076 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:30,076 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:30,076 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:30,076 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:30,077 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:30,077 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:30,077 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:30,077 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:30,077 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:30,077 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:30,077 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:30,077 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:30,077 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:30,077 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:30,079 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:30,079 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:30,079 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:30,079 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:30,079 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:30,079 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:30,079 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:30,079 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:30,079 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:30,079 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:30,084 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:30,084 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:30,084 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:30,084 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:30,084 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:30,084 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:30,084 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:30,084 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:30,084 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:30,084 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:30,084 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:30,084 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:30,084 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:30,084 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:30,084 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:30,090 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:28:30,090 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:28:30,090 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:28:30,090 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:28:30,090 - Writing Practice App - DEBUG - Transcribing image: Screenshot 2025-03-05 at 12.38.43 PM.png
+2025-03-05 13:28:31,189 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:31,189 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:31,189 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:31,189 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:31,189 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:31,189 - Writing Practice App - DEBUG - Using API endpoint: http://localhost:5000/api
+2025-03-05 13:28:31,190 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:31,190 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:31,190 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:31,190 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:31,190 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:31,190 - Writing Practice App - DEBUG - Testing API connection to http://localhost:5000/api/health
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check response: 403
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API health check headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,195 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:31,195 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:31,195 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:31,195 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:31,195 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:31,195 - Writing Practice App - ERROR - API health check failed with 403 Forbidden. This may indicate an authentication issue.
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:31,195 - Writing Practice App - DEBUG - API available: False
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Query parameters: <streamlit.runtime.state.query_params_proxy.QueryParamsProxy object at 0x1217de2f0>
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Getting words for group 1
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:31,196 - Writing Practice App - DEBUG - Requesting words from URL: http://localhost:5000/api/groups/1/words/raw
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response status: 403
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,199 - Writing Practice App - DEBUG - Response headers: {'Content-Length': '0', 'Server': 'AirTunes/775.3.1'}
+2025-03-05 13:28:31,199 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:31,199 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:31,199 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:31,199 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:31,199 - Writing Practice App - ERROR - Failed to get words: 403 - 
+2025-03-05 13:28:31,199 - Writing Practice App - ERROR - Failed to get words: 403 - 
