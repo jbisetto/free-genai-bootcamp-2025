@@ -444,15 +444,20 @@ elif st.session_state.state == "results":
         image = Image.open(st.session_state.uploaded_image)
         st.image(image, caption="Your uploaded writing", use_container_width=True, width=300)
     
-    # Determine which buttons to show based on evaluation
-    if "try again" in st.session_state.evaluation_report.lower():
-        if st.button("Try again", key="try_again_button"):
+    # Create a row of buttons using columns
+    col1, col2, col3 = st.columns(3)
+    
+    # Try Again button - always show this
+    with col1:
+        if st.button("Try Again", key="try_again_button"):
             # Keep the same sentence but reset the uploaded image
             st.session_state.uploaded_image = None
             st.session_state.state = "practice"
             st.rerun()
-    else:
-        if st.button("Give me another sentence", key="next_sentence_button"):
+    
+    # Next Sentence button
+    with col2:
+        if st.button("Next Sentence", key="next_sentence_button"):
             # Move to the next word
             st.session_state.word_index = (st.session_state.word_index + 1) % len(words_data)
             word_data = words_data[st.session_state.word_index]
@@ -465,25 +470,26 @@ elif st.session_state.state == "results":
             st.session_state.state = "practice"
             st.rerun()
     
-    # Always show the finish button
-    if st.button("Finish", key="finish_button"):
-        # Send results to API if session_id is provided
-        if session_id:
-            success = update_session_results(session_id, {
-                "results": st.session_state.results,
-                "completed": True
-            })
-            if success:
-                st.success("Session results saved successfully!")
-            else:
-                st.error("Failed to save session results.")
-        
-        # Reset the app state
-        st.session_state.state = "initial"
-        st.session_state.results = []
-        st.session_state.word_index = 0
-        st.session_state.uploaded_image = None
-        st.rerun()
+    # Finish button
+    with col3:
+        if st.button("Finish", key="finish_button"):
+            # Send results to API if session_id is provided
+            if session_id:
+                success = update_session_results(session_id, {
+                    "results": st.session_state.results,
+                    "completed": True
+                })
+                if success:
+                    st.success("Session results saved successfully!")
+                else:
+                    st.error("Failed to save session results.")
+            
+            # Reset the app state
+            st.session_state.state = "initial"
+            st.session_state.results = []
+            st.session_state.word_index = 0
+            st.session_state.uploaded_image = None
+            st.rerun()
 
 # Footer
 st.sidebar.markdown("---")
