@@ -79,10 +79,6 @@ free-genai-bootcamp-2025/
 - [ChromaDB Documentation](https://docs.trychroma.com/)
 - [RAG Pattern Implementation Guide](https://aws.amazon.com/blogs/machine-learning/question-answering-using-retrieval-augmented-generation-with-foundation-models-in-amazon-sagemaker-jumpstart/)
 
-## Author
-
-- [Joe Bisetto](https://github.com/jbisetto)
-
 ## Development Updates
 
 ### Week 3 Updates
