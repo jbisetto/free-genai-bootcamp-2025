@@ -138,29 +138,42 @@ def get_words(group_id):
         logger.debug(f"Response headers: {response.headers}")
         
         if response.status_code == 200:
-            words_data = response.json()
-            logger.debug(f"Successfully retrieved {len(words_data)} words")
-            return words_data
+            api_response = response.json()
+            logger.debug(f"Successfully retrieved words data")
+            logger.debug(json.dumps(api_response, indent=4))
+            
+            # Extract the words array from the response
+            if 'words' in api_response:
+                words_from_api = api_response['words']
+                # Map API fields to the expected format
+                words_data = []
+                for word in words_from_api:
+                    words_data.append({
+                        "word_jp": word["kanji"],
+                        "word_en": word["english"]
+                    })
+                logger.debug(f"Processed {len(words_data)} words")
+                return words_data
+            else:
+                logger.error("API response doesn't contain 'words' key")
+                return get_mock_words()
         else:
             logger.error(f"Failed to get words: {response.status_code} - {response.text}")
-            # For debugging purposes, return mock data if API fails
-            return [
-                {"word_jp": "本", "word_en": "book"},
-                {"word_jp": "車", "word_en": "car"},
-                {"word_jp": "家", "word_en": "house"},
-                {"word_jp": "読む", "word_en": "read"},
-                {"word_jp": "食べる", "word_en": "eat"}
-            ]
+            return get_mock_words()
     except Exception as e:
         logger.error(f"Exception while getting words: {str(e)}")
-        # For debugging purposes, return mock data if API fails
-        return [
-            {"word_jp": "本", "word_en": "book"},
-            {"word_jp": "車", "word_en": "car"},
-            {"word_jp": "家", "word_en": "house"},
-            {"word_jp": "読む", "word_en": "read"},
-            {"word_jp": "食べる", "word_en": "eat"}
-        ]
+        return get_mock_words()
+
+def get_mock_words():
+    """Return mock words data for testing or when API fails"""
+    logger.debug("Using mock words data")
+    return [
+        {"word_jp": "本", "word_en": "book"},
+        {"word_jp": "車", "word_en": "car"},
+        {"word_jp": "家", "word_en": "house"},
+        {"word_jp": "読む", "word_en": "read"},
+        {"word_jp": "食べる", "word_en": "eat"}
+    ]
 
 # Function to send session results back to the API
 def update_session_results(session_id, results):
@@ -286,6 +299,12 @@ def transcribe_image(image_file):
         # Return a mock translation based on the current word, or a default if not found
         return mock_translations.get(current_word, "日本語のテキスト例です。") + " (Fallback text)"
 
+# Test Japanese text rendering
+def test_japanese_rendering():
+    """Test if Japanese text is rendering properly in Streamlit"""
+    test_text = "日本語テキストのテスト"
+    return test_text
+
 # Main Streamlit app
 st.title("Japanese Writing Practice")
 
@@ -330,6 +349,18 @@ if "results" not in st.session_state:
 if "uploaded_image" not in st.session_state:
     st.session_state.uploaded_image = None
 
+# Add debug information to the sidebar
+st.sidebar.markdown("---")
+st.sidebar.write("### Debug Information")
+if st.sidebar.checkbox("Show Debug Info"):
+    st.sidebar.write("Japanese Rendering Test:")
+    st.sidebar.write(test_japanese_rendering())
+    
+    if words_data:
+        st.sidebar.write("First 3 words from API:")
+        for i, word in enumerate(words_data[:3]):
+            st.sidebar.write(f"{i+1}. {word}")
+
 # Handle different page states
 if st.session_state.state == "initial":
     # Initial State
@@ -352,6 +383,11 @@ elif st.session_state.state == "practice":
     # Practice State
     st.write("## Translate the following sentence into Japanese:")
     st.write(f"**{st.session_state.current_sentence_en}**")
+    
+    # Display the current Japanese word for reference
+    current_word_jp = next((word["word_jp"] for word in words_data if word["word_en"] == st.session_state.current_word), None)
+    if current_word_jp:
+        st.write(f"Focus word: **{current_word_jp}** ({st.session_state.current_word})")
     
     # File uploader for the user's writing
     uploaded_file = st.file_uploader("Upload your writing", type=["jpg", "png", "jpeg"], key="file_uploader")
