@@ -499,10 +499,161 @@ Run the test suite:
 python -m unittest discover -s tests
 ```
 
-The tests include:
-- Unit tests for each tool
-- Integration tests for tool interactions
-- Agent tests for the ReAct workflow
+## Testing Framework
+
+The Song Vocabulary App uses a comprehensive testing approach that includes unit tests, integration tests, and performance tests. This section will help you understand how to run tests, how our mocking strategy works, and how to add new tests.
+
+### Test Structure
+
+Tests are organized into the following categories:
+
+1. **Unit Tests**: Located in `tests/` directory with filenames matching `test_*.py`
+   - `test_get_lyrics.py`: Tests for the lyrics retrieval and caching functionality
+   - `test_extract_vocab.py`: Tests for the vocabulary extraction functionality
+   - `test_agent.py`: Tests for the ReAct agent functionality
+
+2. **Integration Tests**: Located in `tests/` directory
+   - `test_caching_integration.py`: Tests for the interaction between caching and other components
+
+### Running Tests
+
+To run all tests:
+
+```bash
+python -m unittest discover
+```
+
+To run a specific test file:
+
+```bash
+python -m unittest tests/test_caching_integration.py
+```
+
+To run a specific test with verbose output:
+
+```bash
+python -m unittest tests/test_caching_integration.py -v
+```
+
+### Mocking Strategy
+
+We use Python's `unittest.mock` library extensively to isolate components during testing. Here's how our mocking strategy works:
+
+#### 1. External API Mocking
+
+We mock external APIs to avoid making real network requests during testing:
+
+```python
+# Example: Mocking DuckDuckGo search
+with patch('app.tools.get_lyrics.DDGS') as mock_ddgs:
+    mock_instance = MagicMock()
+    mock_ddgs.return_value = mock_instance
+    mock_instance.text.return_value = [{'body': 'Mock lyrics', 'href': 'https://example.com'}]
+    
+    # Test code that uses DDGS
+    result = get_lyrics("Test Song", "Test Artist")
+```
+
+#### 2. Component Interaction Mocking
+
+We mock interactions between components to test them in isolation:
+
+```python
+# Example: Mocking extract_vocabulary when testing the workflow
+with patch('app.tools.extract_vocab.extract_vocabulary') as mock_extract:
+    mock_extract.return_value = {
+        'success': True,
+        'vocabulary': [
+            {'word': 'テスト', 'reading': 'tesuto', 'meaning': 'test'}
+        ]
+    }
+    
+    # Test code that uses extract_vocabulary
+    result = process_lyrics("Some lyrics")
+```
+
+#### 3. LLM Response Mocking
+
+We mock LLM responses when testing the agent:
+
+```python
+# Example: Mocking LLM responses
+with patch('app.agent.agent.client') as mock_client:
+    mock_response = MagicMock()
+    mock_response.response = "Thought: I need to get lyrics\nAction: get_lyrics\nAction Input: {\"song\": \"Test\"}\n..."
+    mock_client.completions.create.return_value = mock_response
+    
+    # Test code that uses the LLM
+    result = run_agent("What are the lyrics to Test?")
+```
+
+#### 4. Caching System Testing
+
+For testing the caching system, we use a combination of real and mock components:
+
+1. **Real SQLite Database**: We use a real SQLite database but with a temporary path for testing
+2. **Mock Network Failures**: We simulate network failures by raising exceptions from mocked components
+3. **Performance Testing**: We compare the performance of cached vs. non-cached retrieval
+
+```python
+# Example: Setting up a test database for caching
+def setUp(self):
+    # Create a temporary directory for the test database
+    self.test_db_dir = tempfile.mkdtemp()
+    self.test_db_path = os.path.join(self.test_db_dir, "test_lyrics_cache.db")
+    
+    # Set the environment variable to use the test database
+    os.environ["LYRICS_CACHE_PATH"] = self.test_db_path
+```
+
+### Test Coverage
+
+Our tests cover the following key areas:
+
+1. **Lyrics Retrieval and Caching**:
+   - Successful retrieval and caching of lyrics
+   - Error handling for network failures
+   - Cache hit/miss scenarios
+   - Compression and decompression of cached lyrics
+   - Metadata handling
+
+2. **Vocabulary Extraction**:
+   - Extraction of vocabulary from Japanese lyrics
+   - Handling of different input formats
+   - Error handling for invalid inputs
+
+3. **Agent Functionality**:
+   - Correct parsing of LLM responses
+   - Proper tool selection and execution
+   - Error handling and recovery
+
+4. **Integration Testing**:
+   - End-to-end workflow from lyrics retrieval to vocabulary extraction
+   - Offline mode operation
+   - Performance comparison
+
+### Adding New Tests
+
+When adding new tests, follow these guidelines:
+
+1. **Use Descriptive Test Names**: Test method names should clearly describe what they're testing
+2. **Isolate Dependencies**: Use mocking to isolate the component being tested
+3. **Test Edge Cases**: Include tests for error conditions and edge cases
+4. **Document Test Purpose**: Include docstrings explaining what each test is verifying
+5. **Keep Tests Independent**: Each test should be able to run independently
+
+### Recent Test Improvements
+
+As of March 2025, we've made several improvements to the testing framework:
+
+1. **Enhanced Integration Tests**:
+   - Fixed `test_lyrics_to_vocabulary_workflow` to correctly verify the extract_vocabulary mock is called as expected
+   - Enhanced `test_offline_mode_fallback` to use unique song names with timestamps
+   - Improved simulation of network unavailability in offline tests
+
+2. **Better Test Documentation**:
+   - Added detailed comments explaining test purposes and mocking strategies
+   - Documented why certain tests are skipped and the challenges involved
 
 ## Common Development Tasks
 
