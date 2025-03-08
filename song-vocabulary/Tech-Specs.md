@@ -118,12 +118,12 @@ See 'backend-flask/seed/data_verbs.json' for an example of the expected output.
       "english": "<english>",
       "parts": [
         {
-          "character": "<kanji>",
-          "romaji": "<romaji>"
+          "kanji": "<kanji>",
+          "romaji": ["<romaji_part1>", "<romaji_part2>", "..."]
         }
       ]
     }
-    // Always returns exactly 5 vocabulary items
+    // Can return up to 400 vocabulary items
   ]
 }
 ```

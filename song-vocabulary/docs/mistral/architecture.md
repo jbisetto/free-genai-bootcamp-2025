@@ -233,12 +233,12 @@ Each tool is a function that takes inputs and returns a dictionary with results 
             "romaji": "remon",
             "english": "lemon",
             "parts": [
-                {"character": "レ", "romaji": "re"},
-                {"character": "モ", "romaji": "mo"},
-                {"character": "ン", "romaji": "n"}
+                {"kanji": "レ", "romaji": ["re"]},
+                {"kanji": "モ", "romaji": ["mo"]},
+                {"kanji": "ン", "romaji": ["n"]}
             ]
         },
-        ... # Always returns exactly 5 vocabulary items
+        ... # Can return up to 400 vocabulary items
     ]
 }
 ```

@@ -46,8 +46,8 @@ def extract_vocabulary(lyrics: str) -> Dict[str, Any]:
         
         # Define the schema for vocabulary items
         class Part(instructor.dsl.InstructorDSLModel):
-            character: str
-            romaji: str
+            kanji: str
+            romaji: List[str]
         
         class VocabularyItem(instructor.dsl.InstructorDSLModel):
             kanji: str
@@ -68,9 +68,9 @@ def extract_vocabulary(lyrics: str) -> Dict[str, Any]:
       "romaji": "remon",
       "english": "lemon",
       "parts": [
-        {"character": "レ", "romaji": "re"},
-        {"character": "モ", "romaji": "mo"},
-        {"character": "ン", "romaji": "n"}
+        {"kanji": "レ", "romaji": ["re"]},
+        {"kanji": "モ", "romaji": ["mo"]},
+        {"kanji": "ン", "romaji": ["n"]}
       ]
     },
     {
@@ -78,7 +78,7 @@ def extract_vocabulary(lyrics: str) -> Dict[str, Any]:
       "romaji": "ai",
       "english": "love",
       "parts": [
-        {"character": "愛", "romaji": "ai"}
+        {"kanji": "愛", "romaji": ["ai"]}
       ]
     },
     {
@@ -86,8 +86,8 @@ def extract_vocabulary(lyrics: str) -> Dict[str, Any]:
       "romaji": "ongaku",
       "english": "music",
       "parts": [
-        {"character": "音", "romaji": "on"},
-        {"character": "楽", "romaji": "gaku"}
+        {"kanji": "音", "romaji": ["on"]},
+        {"kanji": "楽", "romaji": ["ga", "ku"]}
       ]
     },
     {
@@ -95,7 +95,7 @@ def extract_vocabulary(lyrics: str) -> Dict[str, Any]:
       "romaji": "uta",
       "english": "song",
       "parts": [
-        {"character": "歌", "romaji": "uta"}
+        {"kanji": "歌", "romaji": ["u", "ta"]}
       ]
     },
     {
@@ -103,7 +103,7 @@ def extract_vocabulary(lyrics: str) -> Dict[str, Any]:
       "romaji": "kokoro",
       "english": "heart",
       "parts": [
-        {"character": "心", "romaji": "kokoro"}
+        {"kanji": "心", "romaji": ["ko", "ko", "ro"]}
       ]
     }
   ]
@@ -118,9 +118,9 @@ def extract_vocabulary(lyrics: str) -> Dict[str, Any]:
         1. Provide the kanji/kana form
         2. Provide the romaji (romanized) pronunciation
         3. Provide the English translation
-        4. Break down each character with its romaji pronunciation
+        4. Break down each kanji character with its romaji pronunciation
         
-        ⚠️ CRITICAL REQUIREMENT: You MUST extract EXACTLY 5 vocabulary items. ⚠️
+        ⚠️ CRITICAL REQUIREMENT: You can extract up to 400 vocabulary items. ⚠️
         
         If the lyrics are not in Japanese or contain few Japanese words:
         - First, extract ANY Japanese words or phrases that appear in the lyrics, even if they are just a few

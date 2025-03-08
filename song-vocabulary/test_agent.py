@@ -39,6 +39,9 @@ def main():
             # If we have vocabulary, print some stats
             if "vocabulary" in result and isinstance(result["vocabulary"], list):
                 print(f"Vocabulary items: {len(result['vocabulary'])}")
+                # For testing purposes, we expect at least 5 vocabulary items
+                if len(result["vocabulary"]) < 5:
+                    print("WARNING: Expected at least 5 vocabulary items for testing")
                 if result["vocabulary"]:
                     print(f"First item type: {type(result['vocabulary'][0])}")
                     if isinstance(result["vocabulary"][0], dict):
