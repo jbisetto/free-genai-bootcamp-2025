@@ -546,7 +546,12 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
         
         except Exception as e:
             error_msg = str(e)
-            logger.error(f"Error running agent: {error_msg}")
+            
+            # Add a note about expected errors during testing
+            if "LLM error" in error_msg and "test_agent_error_handling_llm_error" in error_msg:
+                logger.error(f"Error running agent: {error_msg} (EXPECTED DURING TESTING)")
+            else:
+                logger.error(f"Error running agent: {error_msg}")
             
             # Check for specific error messages
             if "model not found" in error_msg.lower():

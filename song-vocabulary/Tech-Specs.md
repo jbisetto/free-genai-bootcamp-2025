@@ -135,4 +135,58 @@ See 'backend-flask/seed/data_verbs.json' for an example of the expected output.
 }
 ```
 
+## Testing Strategy
+
+### Testing Principles
+The application follows a comprehensive testing strategy based on these key principles:
+
+1. **Component Isolation**
+   - Each component should be testable in isolation
+   - External dependencies should be abstracted to allow for mocking
+   - Tests should not depend on implementation details
+
+2. **Multi-level Testing**
+   - Unit tests for individual components
+   - Integration tests for component interactions
+   - Functional tests for complete workflows
+   - Error handling tests for resilience verification
+
+3. **Test-Driven Development**
+   - Tests should be written before or alongside code
+   - Tests serve as living documentation of expected behavior
+   - Tests should guide implementation decisions
+
+4. **Continuous Verification**
+   - Tests should be run frequently during development
+   - Test automation should be integrated into the development workflow
+   - Test failures should be addressed promptly
+
+### Test Coverage Expectations
+
+The testing strategy should aim for comprehensive coverage with emphasis on critical paths:
+
+- Core functionality should have near-complete test coverage
+- Error handling paths should be thoroughly tested
+- Edge cases should be identified and covered
+- API contracts should be verified through tests
+
+### Mocking Guidelines
+
+When testing components with external dependencies:
+
+1. Use dependency injection to facilitate mocking
+2. Create clear interfaces for external services
+3. Mock at the appropriate level (HTTP, client library, etc.)
+4. Ensure mocks reflect realistic behavior
+
+### Quality Assurance Process
+
+Beyond automated testing, the QA process should include:
+
+1. Code reviews with attention to testability
+2. Regular test coverage analysis
+3. Periodic test suite maintenance
+4. Documentation of testing approach and coverage
+
+Refer to the project's QA documentation for specific implementation details and current test coverage metrics.
 

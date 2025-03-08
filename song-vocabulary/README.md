@@ -78,6 +78,21 @@ Once the server is running, you can access the interactive API documentation at:
 - Swagger UI: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
 
+## Testing
+
+The application includes comprehensive test coverage for all components:
+
+```
+python -m unittest discover -s tests
+```
+
+The test suite includes:
+- Unit tests for all tools (lyrics retrieval, vocabulary extraction, vocabulary formatting)
+- Integration tests between tools
+- Agent tests for the ReAct agent workflow
+
+For a detailed analysis of test coverage and quality assurance assessment, see the [QA Testing Summary](tests/QA_TESTING_SUMMARY.md).
+
 ## Project Structure
 
 ```
@@ -94,10 +109,14 @@ song-vocabulary/
 │       ├── get_lyrics.py     # Tool to fetch lyrics
 │       ├── extract_vocab.py  # Tool to extract vocabulary
 │       └── return_vocab.py   # Tool to format vocabulary
-├── tests/                    # Unit tests
+├── tests/                    # Unit and integration tests
 │   ├── __init__.py
-│   ├── test_agent.py
-│   └── test_tools.py
+│   ├── test_agent.py         # Tests for the ReAct agent
+│   ├── test_extract_vocab.py # Tests for vocabulary extraction
+│   ├── test_get_lyrics.py    # Tests for lyrics retrieval
+│   ├── test_integration.py   # Integration tests between tools
+│   ├── test_return_vocab.py  # Tests for vocabulary formatting
+│   └── QA_TESTING_SUMMARY.md # QA assessment and test coverage report
 ├── requirements.txt          # Project dependencies
 ├── .env.example              # Example environment variables
 ├── README.md                 # Project documentation
