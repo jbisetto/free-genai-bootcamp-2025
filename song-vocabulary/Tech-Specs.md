@@ -7,7 +7,9 @@ We want to create an AI agent using tool use and expose that as an API endpoint.
 - Python FastAPI
 - Ollama via the Ollama Python SDK, using Mistral 7B (running locally)
 - Instructor (for structured JSON output)
-- duckduckgo-search to get lyrics 
+- duckduckgo-search to get lyrics
+- SQLite for caching lyrics with compression
+- zlib for text compression
 
 ## Project Structure
 ```
@@ -21,9 +23,11 @@ song-vocabulary/
 │   │   └── prompt.py         # ReAct prompt template
 │   └── tools/
 │       ├── __init__.py
-│       ├── get_lyrics.py     # Tool to fetch lyrics
+│       ├── get_lyrics.py     # Tool to fetch lyrics with caching
 │       ├── extract_vocab.py  # Tool to extract vocabulary
 │       └── return_vocab.py   # Tool to format vocabulary
+├── data/                     # Directory for cached data
+│   └── lyrics_cache.db       # SQLite database for cached lyrics
 ├── tests/                    # Unit tests
 │   ├── __init__.py
 │   ├── test_agent.py
@@ -52,6 +56,11 @@ The agent will not need to load the output into the database.
 ### Agent Tools
 
 1. `get_lyrics` - Get song lyrics from duckduckgo-search (retrieve all lyrics, not just Japanese ones)
+   - Implements SQLite-based caching with zlib compression to reduce external API calls
+   - Normalizes song and artist names for consistent cache lookup
+   - Automatically detects language (Japanese/English) for cached lyrics
+   - Includes cache management to limit size and remove old entries
+   - Provides compression statistics and metrics for monitoring
 2. `extract_vocabulary` - Extract vocabulary words from the lyrics with the following features:
    - Handles both Japanese and English songs:
      - For Japanese songs: Extracts vocabulary directly from the lyrics
@@ -148,6 +157,7 @@ The application follows a comprehensive testing strategy based on these key prin
    - Each component should be testable in isolation
    - External dependencies should be abstracted to allow for mocking
    - Tests should not depend on implementation details
+   - Lyrics caching system includes a mock mode for testing without external APIs
 
 2. **Multi-level Testing**
    - Unit tests for individual components

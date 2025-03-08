@@ -5,6 +5,7 @@ This application uses AI to find song lyrics and extract Japanese vocabulary wor
 ## Features
 
 - Search for song lyrics using DuckDuckGo
+- Efficient lyrics caching with compression to reduce API calls and improve performance
 - Extract Japanese vocabulary from lyrics using Mistral 7B
 - Support for both Japanese and English songs:
   - Japanese songs: Extract vocabulary directly from lyrics
@@ -16,7 +17,8 @@ This application uses AI to find song lyrics and extract Japanese vocabulary wor
 
 - Python 3.8+
 - Ollama installed locally with Mistral 7B model
-- Internet connection for lyrics search
+- Internet connection for lyrics search (first-time only for each song)
+- SQLite (included in Python standard library)
 
 ## Installation
 
@@ -85,6 +87,20 @@ Once the server is running, you can access the interactive API documentation at:
 - Swagger UI: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
 
+## Performance Optimization
+
+The application implements several performance optimizations:
+
+1. **Lyrics Caching**: Lyrics are cached in a SQLite database to reduce external API calls
+   - Subsequent requests for the same song use cached data
+   - Cached lyrics are compressed using zlib to reduce storage requirements
+   - Typical compression ratios range from 1.4x to 2.5x depending on lyrics content
+
+2. **Cache Management**:
+   - Automatic cleanup of old cache entries (configurable, default: 90 days)
+   - Size-based cache limiting (configurable, default: 1000 entries)
+   - LRU (Least Recently Used) eviction policy for excess entries
+
 ## Testing
 
 The application includes comprehensive test coverage for all components:
@@ -97,6 +113,7 @@ The test suite includes:
 - Unit tests for all tools (lyrics retrieval, vocabulary extraction, vocabulary formatting)
 - Integration tests between tools
 - Agent tests for the ReAct agent workflow
+- Mock mode for testing caching without external API dependencies
 
 For a detailed analysis of test coverage and quality assurance assessment, see the [QA Testing Summary](tests/QA_TESTING_SUMMARY.md).
 

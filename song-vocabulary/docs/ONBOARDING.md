@@ -4,7 +4,7 @@
 
 The Song Vocabulary App is an AI-powered application that extracts Japanese vocabulary from song lyrics. It uses a ReAct (Reasoning + Acting) agent pattern with Mistral 7B to create a tool-using AI system that can:
 
-1. Search for and retrieve song lyrics
+1. Search for and retrieve song lyrics (with efficient caching and compression)
 2. Extract relevant Japanese vocabulary from those lyrics
 3. Format the vocabulary into a structured JSON response
 
@@ -38,6 +38,15 @@ This document will help you understand the architecture, components, and workflo
     │  Tool           ││ Tool            ││ Tool            │
     │                 ││                 ││                 │
     └─────────────────┘└─────────────────┘└─────────────────┘
+             │
+             ▼
+    ┌─────────────────┐
+    │                 │
+    │  SQLite Cache   │
+    │  with zlib      │
+    │  Compression    │
+    │                 │
+    └─────────────────┘
 ```
 
 ## Key Components
@@ -114,21 +123,62 @@ The agent uses three specialized tools:
 
 #### a. Get Lyrics Tool (`app/tools/get_lyrics.py`)
 
-Searches for and retrieves lyrics for a given song and artist using DuckDuckGo search:
+Searches for and retrieves lyrics for a given song and artist using DuckDuckGo search, with an efficient caching system using SQLite and zlib compression:
 
 ```python
-def get_lyrics(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
+def get_lyrics(song: str, artist: Optional[str] = None, use_mock: bool = False) -> Dict[str, Any]:
+    # First check if lyrics are in the cache
+    cached_result = get_cached_lyrics(song, artist)
+    if cached_result:
+        logger.info(f"Cache hit for '{song}' by '{artist}'")
+        return cached_result
+    
+    logger.info(f"Cache miss for '{song}' by '{artist}', fetching from web")
+    
+    # If mock mode is enabled, return mock lyrics
+    if use_mock:
+        logger.info(f"Cache miss for '{song}' by '{artist}', using mock data")
+        lyrics = f"Sample lyrics for {song} by {artist}"
+        metadata = {"source": "mock", "is_mock": True}
+        
+        # Cache the mock lyrics
+        cache_stats = cache_lyrics(song, artist, lyrics, metadata)
+        logger.info(f"Updated cache entry for '{song}' by '{artist}'")
+        
+        return {
+            "success": True,
+            "lyrics": lyrics,
+            "source": "mock",
+            "is_mock": True,
+            "cache_stats": cache_stats
+        }
+    
     # Construct the search query
     query = f"{song} lyrics"
     if artist:
         query = f"{artist} {query}"
     
     # Search for lyrics using DuckDuckGo
-    ddgs = DDGS()
-    results = list(ddgs.text(query, max_results=5))
-    
-    # Extract and return the lyrics
-    # ...
+    try:
+        ddgs = DDGS()
+        results = list(ddgs.text(query, max_results=5))
+        
+        # Process results and extract lyrics
+        # ...
+        
+        # Cache the lyrics
+        cache_stats = cache_lyrics(song, artist, lyrics, metadata)
+        logger.info(f"Updated cache entry for '{song}' by '{artist}'")
+        
+        return {
+            "success": True,
+            "lyrics": lyrics,
+            "source": source,
+            "cache_stats": cache_stats
+        }
+    except Exception as e:
+        logger.error(f"Error fetching lyrics: {e}")
+        return {"success": False, "error": str(e)}
 ```
 
 #### b. Extract Vocabulary Tool (`app/tools/extract_vocab.py`)
@@ -179,6 +229,100 @@ def return_vocabulary(vocabulary_data: Dict[str, Any]) -> Dict[str, Any]:
         "vocabulary": vocabulary
     }
 ```
+
+## Caching System and Mock Mode
+
+The application includes a sophisticated caching system using SQLite and zlib compression to improve performance and reduce external API calls.
+
+### SQLite Caching
+
+The caching system stores compressed lyrics in a SQLite database with the following features:
+
+1. **Automatic Cache Creation**: The database is created automatically if it doesn't exist
+2. **Compression**: Lyrics are compressed using zlib to reduce storage requirements
+3. **Metadata Storage**: Additional metadata like source and timestamp are stored alongside lyrics
+4. **Cache Management**: A function to clean up old or excess entries is provided
+
+```python
+def get_cached_lyrics(song: str, artist: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """Retrieve lyrics from the cache if available."""
+    # Create the database connection
+    conn = sqlite3.connect(CACHE_DB_PATH)
+    try:
+        cursor = conn.cursor()
+        
+        # Create the table if it doesn't exist
+        cursor.execute(
+            """CREATE TABLE IF NOT EXISTS lyrics_cache (
+                id INTEGER PRIMARY KEY,
+                song TEXT,
+                artist TEXT,
+                lyrics BLOB,
+                metadata TEXT,
+                timestamp INTEGER,
+                UNIQUE(song, artist)
+            )"""
+        )
+        
+        # Query for the cached lyrics
+        query = "SELECT lyrics, metadata, timestamp FROM lyrics_cache WHERE song = ? AND "
+        if artist is None:
+            query += "artist IS NULL"
+            params = (song,)
+        else:
+            query += "artist = ?"
+            params = (song, artist)
+            
+        cursor.execute(query, params)
+        result = cursor.fetchone()
+        
+        if result:
+            # Decompress the lyrics
+            compressed_lyrics, metadata_json, timestamp = result
+            lyrics = zlib.decompress(compressed_lyrics).decode('utf-8')
+            metadata = json.loads(metadata_json)
+            
+            return {
+                "success": True,
+                "lyrics": lyrics,
+                "source": metadata.get("source", "cache"),
+                "is_mock": metadata.get("is_mock", False),
+                "cache_info": {
+                    "timestamp": timestamp,
+                    "age_seconds": int(time.time()) - timestamp
+                }
+            }
+        
+        return None
+    finally:
+        conn.close()
+```
+
+### Mock Mode
+
+The application includes a mock mode for testing and development purposes. This allows you to retrieve lyrics without making actual API calls.
+
+#### Using Mock Mode
+
+```python
+# Example 1: Using mock mode in the get_lyrics function
+result = get_lyrics("Lemon", "Kenshi Yonezu", use_mock=True)
+# Returns mock lyrics with is_mock=True in the metadata
+
+# Example 2: Testing with mock mode
+def test_get_lyrics_with_mock():
+    result = get_lyrics("Test Song", "Test Artist", use_mock=True)
+    assert result["success"] == True
+    assert result["is_mock"] == True
+    assert "Sample lyrics" in result["lyrics"]
+```
+
+#### Benefits of Mock Mode
+
+1. **Testing Without External Dependencies**: Run tests without internet access
+2. **Consistent Test Results**: Tests are not affected by external API changes
+3. **Faster Test Execution**: No need to wait for network requests
+4. **Offline Development**: Develop and test without internet connectivity
 
 ## The ReAct Pattern
 

@@ -9,9 +9,13 @@ from app.tools.extract_vocab import extract_vocabulary
 class TestToolsIntegration(unittest.TestCase):
     """Test the integration between the get_lyrics and extract_vocabulary tools."""
 
+    @patch('app.tools.get_lyrics.get_cached_lyrics')
     @patch('app.tools.get_lyrics.DDGS')
-    def test_lyrics_to_vocabulary_workflow(self, mock_ddgs):
+    def test_lyrics_to_vocabulary_workflow(self, mock_ddgs, mock_get_cached):
         """Test the complete workflow from getting lyrics to extracting vocabulary."""
+        # Setup cache miss
+        mock_get_cached.return_value = None
+        
         # Setup mocks for get_lyrics
         mock_ddgs_instance = MagicMock()
         mock_ddgs.return_value = mock_ddgs_instance
@@ -23,8 +27,8 @@ class TestToolsIntegration(unittest.TestCase):
             }
         ]
         
-        # Step 1: Get lyrics
-        lyrics_result = get_lyrics("Lemon", "Kenshi Yonezu")
+        # Step 1: Get lyrics (with use_mock=False to force web search)
+        lyrics_result = get_lyrics("Lemon", "Kenshi Yonezu", use_mock=False)
         
         # Assertions for lyrics
         self.assertTrue(lyrics_result['success'])
@@ -42,9 +46,13 @@ class TestToolsIntegration(unittest.TestCase):
         # We'll skip testing the actual vocabulary extraction with the real LLM
         # as that would require complex mocking of the instructor module
         
+    @patch('app.tools.get_lyrics.get_cached_lyrics')
     @patch('app.tools.get_lyrics.DDGS')
-    def test_no_lyrics_found_integration(self, mock_ddgs):
+    def test_no_lyrics_found_integration(self, mock_ddgs, mock_get_cached):
         """Test the error handling when no lyrics are found."""
+        # Setup cache miss
+        mock_get_cached.return_value = None
+        
         # Setup mock for get_lyrics to return no results
         mock_ddgs_instance = MagicMock()
         mock_ddgs.return_value = mock_ddgs_instance
