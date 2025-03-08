@@ -2,12 +2,40 @@
 Integration tests for the song vocabulary app.
 """
 import unittest
+import logging
 from unittest.mock import patch, MagicMock
-from app.tools.get_lyrics import get_lyrics
+from app.tools.get_lyrics import get_lyrics, setup_lyrics_cache_db
 from app.tools.extract_vocab import extract_vocabulary
+
+# Set up logging
+logger = logging.getLogger(__name__)
 
 class TestToolsIntegration(unittest.TestCase):
     """Test the integration between the get_lyrics and extract_vocabulary tools."""
+    
+    def setUp(self):
+        """Set up test environment."""
+        # Clean up any existing test data
+        self._cleanup_test_data("Lemon", "Kenshi Yonezu")
+    
+    def tearDown(self):
+        """Clean up after tests."""
+        # Clean up test data
+        self._cleanup_test_data("Lemon", "Kenshi Yonezu")
+    
+    def _cleanup_test_data(self, song, artist):
+        """Helper method to clean up test data from the cache."""
+        conn, cursor = setup_lyrics_cache_db()
+        try:
+            # Delete the test song from the cache
+            cursor.execute(
+                "DELETE FROM lyrics_cache WHERE song LIKE ? AND artist LIKE ?", 
+                (song.lower(), artist.lower())
+            )
+            conn.commit()
+            logger.info(f"Cleaned up test data: {cursor.rowcount} rows deleted")
+        finally:
+            conn.close()
 
     @patch('app.tools.get_lyrics.get_cached_lyrics')
     @patch('app.tools.get_lyrics.DDGS')
@@ -27,7 +55,8 @@ class TestToolsIntegration(unittest.TestCase):
             }
         ]
         
-        # Step 1: Get lyrics (with use_mock=False to force web search)
+        # Step 1: Get lyrics (using mocked web request)
+        # Note: We use use_mock=False but the actual web request is mocked by unittest.mock
         lyrics_result = get_lyrics("Lemon", "Kenshi Yonezu", use_mock=False)
         
         # Assertions for lyrics

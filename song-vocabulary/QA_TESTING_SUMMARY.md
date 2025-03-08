@@ -112,20 +112,30 @@ While the application is production-ready, we recommend the following enhancemen
 
 ## Recent Test Improvements
 
-As of March 8, 2025, the following improvements have been made to the integration test suite:
+As of March 8, 2025, the following improvements have been made to the test suite:
 
-1. **Fixed Integration Tests for Caching System**:
+1. **Eliminated Real Web Requests in All Tests**:
+   - Updated all tests to properly mock web requests instead of making real API calls
+   - Added cleanup methods to ensure test data is removed from the cache before and after tests
+   - Implemented try/finally blocks to ensure cleanup happens even if tests fail
+   - Added proper error handling in cleanup methods to prevent test failures due to cleanup issues
+
+2. **Fixed Integration Tests for Caching System**:
    - Fixed `test_lyrics_to_vocabulary_workflow` to correctly verify that the extract_vocabulary mock is called as expected
    - Enhanced `test_offline_mode_fallback` to use unique song names with timestamps to ensure they're not already in the cache
    - Improved simulation of network unavailability in offline tests
+   - Added proper cleanup of test data to ensure test isolation
 
-2. **Enhanced Test Documentation**:
+3. **Enhanced Test Documentation and Clarity**:
    - Added detailed documentation for the skipped `test_agent_with_caching` test explaining the challenges of mocking LLM-based decision-making
    - Clarified test assertions and improved error messages
+   - Added explicit comments in tests to clarify that `use_mock=False` is still using mocked web requests via unittest.mock
+   - Improved logging to show when test data is being cleaned up
 
-3. **Verified Performance Testing**:
+4. **Verified Performance Testing**:
    - Confirmed that the performance comparison tests accurately measure the difference between cached and non-cached lyrics retrieval
    - Observed performance ratios consistently showing that cached retrieval is competitive with or faster than mock data
+   - Ensured performance tests don't leave test data behind
 
 These improvements have resulted in a more robust and reliable test suite that better validates the caching system's functionality and its integration with other components.
 

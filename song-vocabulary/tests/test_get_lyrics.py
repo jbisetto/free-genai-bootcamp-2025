@@ -9,9 +9,13 @@ import json
 import zlib
 import base64
 import sys
+import logging
 from unittest.mock import patch, MagicMock
 import app.tools.get_lyrics
 from app.tools.get_lyrics import get_lyrics, setup_lyrics_cache_db, compress_lyrics, decompress_lyrics, cache_lyrics, get_cached_lyrics, manage_lyrics_cache
+
+# Set up logging
+logger = logging.getLogger(__name__)
 
 class TestGetLyrics(unittest.TestCase):
     """Test cases for the get_lyrics function."""
@@ -29,9 +33,30 @@ class TestGetLyrics(unittest.TestCase):
     
     def tearDown(self):
         """Clean up after tests."""
+        # Clean up test data from the main cache
+        self._cleanup_test_data("Lemon", "Kenshi Yonezu")
+        self._cleanup_test_data("Test", "Artist")
+        
         # Remove test database
         if os.path.exists(self.test_db_path):
             os.remove(self.test_db_path)
+            
+    def _cleanup_test_data(self, song, artist):
+        """Helper method to clean up test data from the cache."""
+        try:
+            conn, cursor = setup_lyrics_cache_db()
+            try:
+                # Delete the test song from the cache
+                cursor.execute(
+                    "DELETE FROM lyrics_cache WHERE song LIKE ? AND artist LIKE ?", 
+                    (song.lower(), artist.lower())
+                )
+                conn.commit()
+                logger.info(f"Cleaned up test data: {cursor.rowcount} rows deleted")
+            finally:
+                conn.close()
+        except Exception as e:
+            logger.warning(f"Error cleaning up test data: {e}")
 
     @patch('app.tools.get_lyrics.get_cached_lyrics')
     @patch('app.tools.get_lyrics.DDGS')
@@ -51,7 +76,7 @@ class TestGetLyrics(unittest.TestCase):
             }
         ]
 
-        # Call the function with use_mock=False to force web search
+        # Call the function with use_mock=False but the actual web request is mocked
         result = get_lyrics("Lemon", "Kenshi Yonezu", use_mock=False)
 
         # Assertions
@@ -82,7 +107,7 @@ class TestGetLyrics(unittest.TestCase):
             }
         ]
 
-        # Call the function without artist and with use_mock=False to force web search
+        # Call the function without artist and with use_mock=False but the web request is mocked
         result = get_lyrics("Lemon", use_mock=False)
 
         # Assertions
@@ -123,7 +148,7 @@ class TestGetLyrics(unittest.TestCase):
         mock_ddgs.return_value = mock_instance
         mock_instance.text.side_effect = Exception("Test exception")
 
-        # Call the function with use_mock=False to force web search
+        # Call the function with use_mock=False but the actual web request is mocked
         result = get_lyrics("Lemon", "Kenshi Yonezu", use_mock=False)
 
         # Assertions
@@ -280,7 +305,7 @@ class TestGetLyrics(unittest.TestCase):
         }
         
         # First call - should fetch from web and cache
-        # Use use_mock=False to force web search
+        # Use use_mock=False but the web request is mocked
         result1 = get_lyrics("Test", "Artist", use_mock=False)
         self.assertTrue(result1['success'])
         self.assertEqual(result1['lyrics'], 'Sample lyrics for testing')

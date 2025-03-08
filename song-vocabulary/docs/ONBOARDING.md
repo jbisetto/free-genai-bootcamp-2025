@@ -688,14 +688,23 @@ When adding new tests, follow these guidelines:
 
 As of March 2025, we've made several improvements to the testing framework:
 
-1. **Enhanced Integration Tests**:
+1. **Eliminated Real Web Requests in All Tests**:
+   - Updated all tests to properly mock web requests instead of making real API calls
+   - Added cleanup methods to ensure test data is removed from the cache before and after tests
+   - Implemented try/finally blocks to ensure cleanup happens even if tests fail
+   - Added proper error handling in cleanup methods to prevent test failures due to cleanup issues
+
+2. **Enhanced Integration Tests**:
    - Fixed `test_lyrics_to_vocabulary_workflow` to correctly verify the extract_vocabulary mock is called as expected
    - Enhanced `test_offline_mode_fallback` to use unique song names with timestamps
    - Improved simulation of network unavailability in offline tests
+   - Added proper cleanup of test data to ensure test isolation
 
-2. **Better Test Documentation**:
+3. **Better Test Documentation and Clarity**:
    - Added detailed comments explaining test purposes and mocking strategies
    - Documented why certain tests are skipped and the challenges involved
+   - Added explicit comments in tests to clarify that `use_mock=False` is still using mocked web requests via unittest.mock
+   - Improved logging to show when test data is being cleaned up
 
 ## Common Development Tasks
 
