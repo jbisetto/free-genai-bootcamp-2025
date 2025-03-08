@@ -1,11 +1,14 @@
 # Japanese Song Vocabulary Generator
 
-This application uses AI to find Japanese song lyrics and extract vocabulary words for language learning.
+This application uses AI to find song lyrics and extract Japanese vocabulary words for language learning. It supports both Japanese and English songs.
 
 ## Features
 
 - Search for song lyrics using DuckDuckGo
 - Extract Japanese vocabulary from lyrics using Mistral 7B
+- Support for both Japanese and English songs:
+  - Japanese songs: Extract vocabulary directly from lyrics
+  - English songs: Identify nouns, verbs, and adjectives and translate them to Japanese
 - Format vocabulary with kanji, romaji, English translation, and character breakdown
 - Expose functionality through a FastAPI endpoint
 
@@ -47,9 +50,13 @@ This application uses AI to find Japanese song lyrics and extract vocabulary wor
 
 2. Access the API at http://localhost:8000
 
-3. Use the `/api/v1/vocab-generator` endpoint to generate vocabulary:
+3. Use the `/api/v1/vocab-generator` endpoint to generate vocabulary from either Japanese or English songs:
    ```
+   # Japanese song example
    GET /api/v1/vocab-generator?song=Lemon&artist=Kenshi%20Yonezu
+   
+   # English song example
+   GET /api/v1/vocab-generator?song=Hello&artist=Adele
    ```
 
 4. The API will return a JSON response with vocabulary items:

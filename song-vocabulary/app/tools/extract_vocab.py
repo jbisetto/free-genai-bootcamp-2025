@@ -19,13 +19,17 @@ client = Client(host="http://localhost:11434")
 
 def extract_vocabulary(lyrics: str) -> Dict[str, Any]:
     """
-    Extracts Japanese vocabulary from song lyrics.
+    Extracts Japanese vocabulary from song lyrics, handling both Japanese and English inputs.
     
     Args:
         lyrics: The song lyrics to extract vocabulary from
     
     Returns:
         A dictionary containing the extracted vocabulary
+        
+    Language Handling:
+        - Japanese lyrics: Vocabulary is extracted directly from the lyrics
+        - English lyrics: Nouns, verbs, and adjectives are identified and translated to Japanese
     """
     if not lyrics:
         return {
@@ -122,10 +126,19 @@ def extract_vocabulary(lyrics: str) -> Dict[str, Any]:
         
         ⚠️ CRITICAL REQUIREMENT: You can extract up to 400 vocabulary items. ⚠️
         
-        If the lyrics are not in Japanese or contain few Japanese words:
-        - First, extract ANY Japanese words or phrases that appear in the lyrics, even if they are just a few
-        - Then, identify the main themes or emotions in the song (love, sadness, hope, etc.)
-        - Add Japanese vocabulary related to those themes
+        INSTRUCTIONS FOR DIFFERENT LANGUAGES:
+        
+        If the lyrics are primarily in Japanese:
+        - Extract vocabulary words directly from the Japanese lyrics
+        - Focus on important nouns, verbs, adjectives, and expressions
+        
+        If the lyrics are primarily in English:
+        - Identify only nouns, verbs, and adjectives from the English lyrics
+        - Ignore function words (prepositions, articles, conjunctions, pronouns, etc.)
+        - Translate each identified word into Japanese (kanji/kana)
+        - Provide the romaji pronunciation
+        - Provide the original English word
+        - Break down each kanji character with its romaji pronunciation
         
         FORMAT YOUR RESPONSE EXACTLY LIKE THE EXAMPLE BELOW. DO NOT DEVIATE FROM THIS FORMAT.
         {json_example}
@@ -153,7 +166,7 @@ def extract_vocabulary(lyrics: str) -> Dict[str, Any]:
             parts_list = []
             for part in item.parts:
                 parts_list.append({
-                    "character": part.character,
+                    "kanji": part.kanji,  # Use kanji instead of character
                     "romaji": part.romaji
                 })
             

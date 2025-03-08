@@ -14,6 +14,7 @@ You have access to the following tools:
 2. extract_vocabulary: Extract vocabulary words from the lyrics
    - Input: song lyrics
    - Output: A list of vocabulary words with kanji, romaji, English translation, and character breakdown
+   - Note: For Japanese songs, vocabulary is extracted directly; for English songs, nouns, verbs, and adjectives are translated to Japanese
 
 3. return_vocabulary: Format the vocabulary list for the final response
    - Input: vocabulary data

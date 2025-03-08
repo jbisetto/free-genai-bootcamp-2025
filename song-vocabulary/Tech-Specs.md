@@ -53,10 +53,14 @@ The agent will not need to load the output into the database.
 
 1. `get_lyrics` - Get song lyrics from duckduckgo-search (retrieve all lyrics, not just Japanese ones)
 2. `extract_vocabulary` - Extract vocabulary words from the lyrics with the following features:
+   - Handles both Japanese and English songs:
+     - For Japanese songs: Extracts vocabulary directly from the lyrics
+     - For English songs: Identifies nouns, verbs, and adjectives, then translates them to Japanese
    - Limits lyrics to at most 400 words for efficient processing
    - Ensures exactly 5 vocabulary items are returned for all songs
    - Uses detailed prompts with examples to guide the model
    - Implements fallback mechanisms when insufficient items are found
+   - Maintains consistent JSON output format regardless of input language
 3. `return_vocabulary` - Return the list of vocabulary words
 
 Each tool will be a separate function located in the app/tools directory as specified in the project structure.

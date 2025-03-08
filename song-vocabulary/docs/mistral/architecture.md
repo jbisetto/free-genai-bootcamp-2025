@@ -200,7 +200,7 @@ Each tool is a function that takes inputs and returns a dictionary with results 
 
 #### 2. Vocabulary Extraction Tool (`extract_vocab.py`)
 
-**Purpose**: Extracts Japanese vocabulary from song lyrics using the Mistral 7B model.
+**Purpose**: Extracts Japanese vocabulary from song lyrics using the Mistral 7B model, supporting both Japanese and English input lyrics.
 
 **Libraries Used**:
 - `ollama`: Client for interacting with the local Ollama instance
@@ -210,17 +210,20 @@ Each tool is a function that takes inputs and returns a dictionary with results 
 - `json`: For JSON serialization/deserialization
 
 **Implementation Details**:
+- **Language Handling**:
+  - **Japanese Lyrics**: Extracts vocabulary directly from the Japanese text
+  - **English Lyrics**: Identifies nouns, verbs, and adjectives, then translates them to Japanese
 - Limits lyrics to a maximum of 400 words for efficient processing
 - Ensures exactly 5 vocabulary items are returned for all songs
 - Defines Pydantic models for structured vocabulary output:
   - `Part`: Individual kanji/kana characters with romaji
   - `VocabularyItem`: Complete vocabulary word with kanji, romaji, English, and parts
   - `VocabularyResponse`: Collection of vocabulary items
-- Creates a detailed prompt with examples instructing the model to extract vocabulary from lyrics
+- Creates a detailed prompt with language-specific instructions for the model
 - Uses a lower temperature (0.5) for more consistent results
 - Provides clear formatting examples to ensure proper JSON structure
 - Uses Instructor to patch the Ollama client for structured output generation
-- Processes the model's response into a standardized format
+- Processes the model's response into a standardized format regardless of input language
 - Includes specific error handling for missing Ollama models
 
 **Return Format**:
