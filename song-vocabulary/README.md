@@ -52,7 +52,13 @@ This application uses AI to find song lyrics and extract Japanese vocabulary wor
 
 2. Access the API at http://localhost:8000
 
-3. Use the `/api/v1/vocab-generator` endpoint to generate vocabulary from either Japanese or English songs:
+3. Use the API endpoints:
+   - Vocabulary Generator: `/api/v1/vocab-generator?song=SONG_NAME&artist=ARTIST_NAME`
+   - Cache Listing: `/api/v1/cache` (view all cached songs and artists)
+
+4. Access API documentation:
+   - Swagger UI: `http://localhost:8000/docs`
+   - ReDoc: `http://localhost:8000/redoc`
    ```
    # Japanese song example
    GET /api/v1/vocab-generator?song=Lemon&artist=Kenshi%20Yonezu

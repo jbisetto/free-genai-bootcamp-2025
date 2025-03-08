@@ -486,6 +486,62 @@ One last time for the end
         }
     }
 
+def list_cached_songs() -> Dict[str, Any]:
+    """
+    Lists all songs and artists currently in the lyrics cache.
+    
+    Returns:
+        A dictionary containing a list of cached songs with their artists and cache timestamps
+    """
+    try:
+        # Connect to database
+        data_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'data')
+        db_path = os.path.join(data_dir, 'lyrics_cache.db')
+        
+        if not os.path.exists(db_path):
+            return {
+                "success": True,
+                "cached_songs": [],
+                "count": 0,
+                "message": "Cache database does not exist yet"
+            }
+            
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        
+        # Query all songs and artists, ordered by most recently accessed
+        cursor.execute(
+            'SELECT song, artist, created_at, accessed_at FROM lyrics_cache ORDER BY accessed_at DESC'
+        )
+        rows = cursor.fetchall()
+        
+        # Format the results
+        cached_songs = []
+        for row in rows:
+            song, artist, created_at, accessed_at = row
+            cached_songs.append({
+                "song": song,
+                "artist": artist if artist else "Unknown",
+                "cached_at": created_at,
+                "last_accessed": accessed_at
+            })
+        
+        conn.close()
+        
+        return {
+            "success": True,
+            "cached_songs": cached_songs,
+            "count": len(cached_songs)
+        }
+    except Exception as e:
+        logger.error(f"Error listing cached songs: {str(e)}")
+        return {
+            "success": False,
+            "error": f"Error listing cached songs: {str(e)}",
+            "cached_songs": [],
+            "count": 0
+        }
+
 if __name__ == "__main__":
     # Example usage with mock data to test caching
     print("\nFetching lyrics (first time, using mock data):")

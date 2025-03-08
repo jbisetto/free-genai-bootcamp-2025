@@ -365,7 +365,11 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                                     # Try to extract vocabulary directly using the extract_vocabulary tool
                                     vocab_result = extract_vocabulary(agent_state["lyrics"])
                                     if vocab_result.get("success", False) and vocab_result.get("vocabulary"):
-                                        return {"vocabulary": vocab_result["vocabulary"]}
+                                        result = {"vocabulary": vocab_result["vocabulary"]}
+                                        # Include cache info if available
+                                        if "cache_info" in agent_state:
+                                            result["cache_info"] = agent_state["cache_info"]
+                                        return result
                                 except Exception as e:
                                     logger.error(f"Direct extraction failed: {str(e)}")
                             
@@ -447,7 +451,11 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                                     structured_vocab.append(vocab_item)
                             
                             if structured_vocab:
-                                return {"vocabulary": structured_vocab}
+                                result = {"vocabulary": structured_vocab}
+                                # Include cache info if available
+                                if "cache_info" in agent_state:
+                                    result["cache_info"] = agent_state["cache_info"]
+                                return result
                     
                     # If it's already a properly structured dict, just return it
                     return final_answer
@@ -496,7 +504,11 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                                 })
                         
                         if structured_vocab:
-                            return {"vocabulary": structured_vocab}
+                            result = {"vocabulary": structured_vocab}
+                            # Include cache info if available
+                            if "cache_info" in agent_state:
+                                result["cache_info"] = agent_state["cache_info"]
+                            return result
                         else:
                             # Try to parse as JSON in case it's a JSON string
                             try:
@@ -506,6 +518,9 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                                     potential_json = json_match.group(0)
                                     parsed_json = json.loads(potential_json)
                                     if "vocabulary" in parsed_json and isinstance(parsed_json["vocabulary"], list):
+                                        # Include cache info if available
+                                        if "cache_info" in agent_state and "cache_info" not in parsed_json:
+                                            parsed_json["cache_info"] = agent_state["cache_info"]
                                         return parsed_json
                             except:
                                 pass
@@ -532,6 +547,9 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                 # Update agent state
                 if action == "get_lyrics" and observation.get("success", False):
                     agent_state["lyrics"] = observation.get("lyrics")
+                    # Store cache information if available
+                    if "cache_info" in observation:
+                        agent_state["cache_info"] = observation.get("cache_info")
                 elif action == "extract_vocabulary" and observation.get("success", False):
                     agent_state["vocabulary"] = observation.get("vocabulary")
                 

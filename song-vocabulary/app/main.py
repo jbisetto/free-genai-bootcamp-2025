@@ -13,6 +13,7 @@ import logging
 from dotenv import load_dotenv
 
 from app.agent.agent import run_agent
+from app.tools.get_lyrics import list_cached_songs
 
 # Load environment variables
 load_dotenv()
@@ -62,7 +63,8 @@ async def root():
     return {
         "message": "Welcome to the Japanese Song Vocabulary Generator API",
         "endpoints": {
-            "/api/v1/vocab-generator": "Generate vocabulary from song lyrics"
+            "/api/v1/vocab-generator": "Generate vocabulary from song lyrics",
+            "/api/v1/cache": "List all songs and artists in the cache"
         }
     }
 
@@ -91,6 +93,18 @@ async def vocab_generator(
         # Log the result for debugging
         if isinstance(result, dict):
             logger.info(f"Result keys: {result.keys()}")
+            
+            # Log cache information if available
+            if "cache_info" in result and isinstance(result["cache_info"], dict):
+                if result["cache_info"].get("from_cache", False):
+                    logger.info(f"✅ Using CACHED lyrics for '{song}' by '{artist or 'Unknown'}'")
+                    if "cached_at" in result["cache_info"]:
+                        logger.info(f"  - Cached at: {result['cache_info']['cached_at']}")
+                    if "compression" in result["cache_info"] and isinstance(result["cache_info"]["compression"], dict):
+                        ratio = result["cache_info"]["compression"].get("ratio", "unknown")
+                        logger.info(f"  - Compression ratio: {ratio}x")
+                else:
+                    logger.info(f"🔍 Using FRESH lyrics for '{song}' by '{artist or 'Unknown'}'")
         else:
             logger.info(f"Result is not a dict: {result}")
         
@@ -114,6 +128,52 @@ async def vocab_generator(
         
         # Return a proper error response
         raise HTTPException(status_code=500, detail=str(e))
+
+from fastapi.responses import HTMLResponse, PlainTextResponse
+
+@app.get("/api/v1/cache", response_class=PlainTextResponse)
+async def cache_list():
+    """
+    List all songs and artists in the lyrics cache as a text-based table.
+    
+    Returns:
+        A plain text table with all cached songs and their metadata for easy viewing in browser and console
+    """
+    try:
+        logger.info("Received request to list cached songs")
+        
+        # Get the list of cached songs
+        result = list_cached_songs()
+        
+        # Log the result
+        logger.info(f"Found {result.get('count', 0)} cached songs")
+        
+        # Format as a text-based table
+        if not result.get("success", False) or result.get("count", 0) == 0:
+            return "No songs found in cache."
+        
+        # Create table header
+        table = "┌─────────────────────────────┬─────────────────────────────┬─────────────────────────────┬─────────────────────────────┐\n"
+        table += "│ Song                        │ Artist                      │ Cached At                   │ Last Accessed               │\n"
+        table += "├─────────────────────────────┼─────────────────────────────┼─────────────────────────────┼─────────────────────────────┤\n"
+        
+        # Add table rows
+        for song in result.get("cached_songs", []):
+            song_name = (song.get("song", "") or "")[:25]
+            artist_name = (song.get("artist", "") or "")[:25]
+            cached_at = (song.get("cached_at", "") or "")[:25]
+            last_accessed = (song.get("last_accessed", "") or "")[:25]
+            
+            table += f"│ {song_name.ljust(25)} │ {artist_name.ljust(25)} │ {cached_at.ljust(25)} │ {last_accessed.ljust(25)} │\n"
+        
+        # Add table footer
+        table += "└─────────────────────────────┴─────────────────────────────┴─────────────────────────────┴─────────────────────────────┘\n"
+        table += f"\nTotal cached songs: {result.get('count', 0)}\n"
+        
+        return table
+    except Exception as e:
+        logger.error(f"Error listing cached songs: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Error listing cached songs: {str(e)}")
 
 # Run the application
 if __name__ == "__main__":

@@ -31,9 +31,15 @@ This document describes the architecture of our ReAct agent implementation using
 ### 1. FastAPI Server
 
 - **Purpose**: Provides HTTP endpoints for the vocabulary generation service
+- **API Endpoints**:
+  - `/api/v1/vocab-generator`: Main endpoint for generating vocabulary from songs
+  - `/api/v1/cache`: Endpoint for listing all songs and artists in the cache
+  - Swagger UI available at `/docs`
+  - ReDoc available at `/redoc`
 - **Functionality**: 
   - Accepts requests with song and artist information
   - Returns structured vocabulary data
+  - Provides cache visibility for debugging and monitoring
   - Handles errors and provides appropriate responses
 
 ### 2. Vocabulary Agent

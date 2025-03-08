@@ -53,7 +53,11 @@ This document will help you understand the architecture, components, and workflo
 
 ### 1. FastAPI Application (`app/main.py`)
 
-The FastAPI application provides the HTTP interface for the vocabulary generator:
+The FastAPI application provides the HTTP interface for the vocabulary generator with multiple endpoints:
+
+#### API Endpoints
+
+1. **Vocabulary Generator Endpoint**
 
 ```python
 @app.get("/api/v1/vocab-generator")
@@ -67,6 +71,44 @@ async def vocab_generator(
     # Return the result
     return result
 ```
+
+2. **Cache Listing Endpoint**
+
+```python
+@app.get("/api/v1/cache", response_class=PlainTextResponse)
+async def cache_list():
+    # Get the list of cached songs
+    result = list_cached_songs()
+    
+    # Format as a text-based table
+    # ... (table formatting code)
+    
+    return table
+```
+
+This endpoint returns a formatted text-based table of all songs and artists currently in the cache, along with their cache timestamps and last accessed times. It's designed for easy viewing directly in a browser or console, making it ideal for quick debugging and monitoring of the caching system.
+
+**Example Output:**
+
+```
+┌─────────────────────────────┬─────────────────────────────┬─────────────────────────────┬─────────────────────────────┐
+│ Song                        │ Artist                      │ Cached At                   │ Last Accessed               │
+├─────────────────────────────┼─────────────────────────────┼─────────────────────────────┼─────────────────────────────┤
+│ lemon                       │ kenshi yonezu               │ 2025-03-07 20:45:12         │ 2025-03-08 00:51:23         │
+│ gurenge                     │ lisa                        │ 2025-03-06 15:30:45         │ 2025-03-07 10:22:18         │
+└─────────────────────────────┴─────────────────────────────┴─────────────────────────────┴─────────────────────────────┘
+
+Total cached songs: 2
+```
+
+#### API Documentation
+
+The API is fully documented using OpenAPI and can be accessed through:
+
+- **Swagger UI**: Available at `/docs` endpoint
+- **ReDoc**: Available at `/redoc` endpoint
+
+Both interfaces provide interactive documentation where you can explore the API endpoints, see request/response schemas, and even test the API directly from the browser.
 
 ### 2. ReAct Agent (`app/agent/agent.py`)
 
