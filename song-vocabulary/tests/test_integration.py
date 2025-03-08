@@ -4,7 +4,7 @@ Integration tests for the song vocabulary app.
 import unittest
 import logging
 from unittest.mock import patch, MagicMock
-from app.tools.get_lyrics import get_lyrics, setup_lyrics_cache_db
+from app.tools.get_lyrics import get_lyrics
 from app.tools.extract_vocab import extract_vocabulary
 
 # Set up logging
@@ -15,34 +15,17 @@ class TestToolsIntegration(unittest.TestCase):
     
     def setUp(self):
         """Set up test environment."""
-        # Clean up any existing test data
-        self._cleanup_test_data("Lemon", "Kenshi Yonezu")
+        # No setup needed without caching
+        pass
     
     def tearDown(self):
         """Clean up after tests."""
-        # Clean up test data
-        self._cleanup_test_data("Lemon", "Kenshi Yonezu")
-    
-    def _cleanup_test_data(self, song, artist):
-        """Helper method to clean up test data from the cache."""
-        conn, cursor = setup_lyrics_cache_db()
-        try:
-            # Delete the test song from the cache
-            cursor.execute(
-                "DELETE FROM lyrics_cache WHERE song LIKE ? AND artist LIKE ?", 
-                (song.lower(), artist.lower())
-            )
-            conn.commit()
-            logger.info(f"Cleaned up test data: {cursor.rowcount} rows deleted")
-        finally:
-            conn.close()
+        # No cleanup needed without caching
+        pass
 
-    @patch('app.tools.get_lyrics.get_cached_lyrics')
     @patch('app.tools.get_lyrics.DDGS')
-    def test_lyrics_to_vocabulary_workflow(self, mock_ddgs, mock_get_cached):
+    def test_lyrics_to_vocabulary_workflow(self, mock_ddgs):
         """Test the complete workflow from getting lyrics to extracting vocabulary."""
-        # Setup cache miss
-        mock_get_cached.return_value = None
         
         # Setup mocks for get_lyrics
         mock_ddgs_instance = MagicMock()
@@ -75,12 +58,9 @@ class TestToolsIntegration(unittest.TestCase):
         # We'll skip testing the actual vocabulary extraction with the real LLM
         # as that would require complex mocking of the instructor module
         
-    @patch('app.tools.get_lyrics.get_cached_lyrics')
     @patch('app.tools.get_lyrics.DDGS')
-    def test_no_lyrics_found_integration(self, mock_ddgs, mock_get_cached):
+    def test_no_lyrics_found_integration(self, mock_ddgs):
         """Test the error handling when no lyrics are found."""
-        # Setup cache miss
-        mock_get_cached.return_value = None
         
         # Setup mock for get_lyrics to return no results
         mock_ddgs_instance = MagicMock()

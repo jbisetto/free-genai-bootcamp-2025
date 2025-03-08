@@ -22,6 +22,18 @@ This document describes the architecture of our ReAct agent implementation using
                         │  - Lyrics Search │
                         │  - Vocabulary    │
                         │    Extraction    │
+                        │  - Vocabulary    │
+                        │    Caching       │
+                        │                  │
+                        └──────────────────┘
+                               │   ▲
+                               │   │
+                               ▼   │
+                        ┌──────────────────┐
+                        │                  │
+                        │  Caching System  │
+                        │  - JSON (Vocab)  │
+                        │                  │
                         │                  │
                         └──────────────────┘
 ```
@@ -33,7 +45,9 @@ This document describes the architecture of our ReAct agent implementation using
 - **Purpose**: Provides HTTP endpoints for the vocabulary generation service
 - **API Endpoints**:
   - `/api/v1/vocab-generator`: Main endpoint for generating vocabulary from songs
-  - `/api/v1/cache`: Endpoint for listing all songs and artists in the cache
+  - `/api/v1/cache`: Endpoint for listing all songs and artists in the vocabulary cache
+  - `/api/v1/vocab-cache`: Endpoint for listing all entries in the vocabulary cache
+  - `/api/v1/cache/clean`: Endpoint for cleaning up old entries in the vocabulary cache
   - Swagger UI available at `/docs`
   - ReDoc available at `/redoc`
 - **Functionality**: 
@@ -41,6 +55,7 @@ This document describes the architecture of our ReAct agent implementation using
   - Returns structured vocabulary data
   - Provides cache visibility for debugging and monitoring
   - Handles errors and provides appropriate responses
+  - Manages vocabulary cache
 
 ### 2. Vocabulary Agent
 
@@ -70,17 +85,27 @@ This document describes the architecture of our ReAct agent implementation using
   - **Implementation**: Uses the Mistral model to identify vocabulary items
   - **Structured Output**: Formats vocabulary as JSON with kanji, romaji, and English translations
 
+- **Vocabulary Caching Tool**:
+  - **Purpose**: Stores and retrieves processed vocabulary to avoid redundant LLM processing
+  - **Implementation**: Uses JSON file storage with metadata
+  - **Cache Management**: Includes functions for listing, retrieving, and cleaning the cache
+
 ## Data Flow
 
 1. **Request Initiation**:
    - User sends a request with song and artist information
    - FastAPI server validates the request and calls the agent
 
-2. **Agent Initialization**:
+2. **Cache Check**:
+   - Agent checks if vocabulary is already cached for the requested song and artist
+   - If cached, returns the cached vocabulary directly without further processing
+   - If not cached, proceeds with agent initialization
+
+3. **Agent Initialization**:
    - Agent creates an initial prompt with the song and artist information
    - Agent initializes the conversation with the model
 
-3. **ReAct Loop**:
+4. **ReAct Loop**:
    - Agent sends the current conversation to the model
    - Model generates a response with thought, action, and action input
    - Agent parses the response to extract structured information
@@ -88,9 +113,10 @@ This document describes the architecture of our ReAct agent implementation using
    - Agent adds the tool's response to the conversation
    - Loop continues until a final answer is reached or maximum iterations is exceeded
 
-4. **Result Processing**:
+5. **Result Processing**:
    - Agent extracts the final vocabulary list from the model's response
    - Agent formats the vocabulary as structured JSON
+   - Agent saves the processed vocabulary to the cache for future requests
    - FastAPI server returns the vocabulary to the user
 
 ## Sequence Diagram
@@ -100,41 +126,53 @@ sequenceDiagram
     participant User
     participant FastAPI as FastAPI Server
     participant Agent as Vocabulary Agent
+    participant VocabCache as Vocabulary Cache
     participant Ollama as Mistral 7B (Ollama)
     participant Tools as External Tools
     
     User->>FastAPI: Request vocabulary for song
     FastAPI->>Agent: run_agent(song, artist)
     
-    Agent->>Agent: Create initial prompt
-    Agent->>Ollama: Send initial prompt
-    Ollama-->>Agent: Response with thought/action
+    Agent->>VocabCache: Check for cached vocabulary
     
-    loop ReAct Loop
-        Agent->>Agent: Parse response
+    alt Vocabulary in cache
+        VocabCache-->>Agent: Return cached vocabulary
+        Agent-->>FastAPI: Return vocabulary list
+        FastAPI-->>User: JSON response with vocabulary
+    else Vocabulary not in cache
+        Agent->>Agent: Create initial prompt
+        Agent->>Ollama: Send initial prompt
+        Ollama-->>Agent: Response with thought/action
         
-        alt Action: get_lyrics
-            Agent->>Tools: get_lyrics(song, artist)
-            Tools-->>Agent: Return lyrics
-        else Action: extract_vocabulary
-            Agent->>Tools: extract_vocabulary(lyrics)
-            Tools->>Ollama: Request vocabulary extraction
-            Ollama-->>Tools: Return vocabulary items
-            Tools-->>Agent: Return structured vocabulary
-        else Action: return_vocabulary
-            Agent->>Agent: Format final vocabulary
-            Agent->>FastAPI: Return vocabulary list
-            FastAPI-->>User: JSON response with vocabulary
+        loop ReAct Loop
+            Agent->>Agent: Parse response
+            
+            alt Action: get_lyrics
+                Agent->>Tools: get_lyrics(song, artist)
+                Tools->>Tools: Search for lyrics online
+                Tools-->>Agent: Return lyrics
+            else Action: extract_vocabulary
+                Agent->>Tools: extract_vocabulary(lyrics)
+                Tools->>Ollama: Request vocabulary extraction
+                Ollama-->>Tools: Return vocabulary items
+                Tools-->>Agent: Return structured vocabulary
+            else Action: return_vocabulary
+                Agent->>Agent: Format final vocabulary
+                Agent->>VocabCache: Cache the vocabulary
+                Agent->>FastAPI: Return vocabulary list
+                FastAPI-->>User: JSON response with vocabulary
+            end
+            
+            Agent->>Agent: Update conversation
+            Agent->>Ollama: Send updated conversation
+            Ollama-->>Agent: Response with next thought/action
         end
-        
-        Agent->>Agent: Update conversation
-        Agent->>Ollama: Send updated conversation
-        Ollama-->>Agent: Response with next thought/action
     end
     
     Note over Agent: If max iterations reached
     Agent->>Tools: Direct extraction fallback
     Tools-->>Agent: Return vocabulary
+    Agent->>VocabCache: Cache the vocabulary
     Agent->>FastAPI: Return vocabulary list
     FastAPI-->>User: JSON response with vocabulary
 ```
@@ -153,7 +191,10 @@ sequenceDiagram
 
 - **agent.py**: Main implementation of the ReAct agent
 - **prompt.py**: Defines the prompts used to guide the model
-- **tools.py**: Implements the external tools used by the agent
+- **get_lyrics.py**: Implements the lyrics search and caching tool
+- **extract_vocab.py**: Implements the vocabulary extraction tool
+- **return_vocab.py**: Implements the vocabulary formatting tool
+- **vocab_cache.py**: Implements the vocabulary caching system
 
 ### Agent State
 

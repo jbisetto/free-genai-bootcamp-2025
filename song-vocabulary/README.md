@@ -5,13 +5,16 @@ This application uses AI to find song lyrics and extract Japanese vocabulary wor
 ## Features
 
 - Search for song lyrics using DuckDuckGo
-- Efficient lyrics caching with compression to reduce API calls and improve performance
+- Efficient vocabulary caching system:
+  - JSON file-based storage to reduce LLM processing overhead
+  - Significantly improves response times for previously processed songs
 - Extract Japanese vocabulary from lyrics using Mistral 7B
 - Support for both Japanese and English songs:
   - Japanese songs: Extract vocabulary directly from lyrics
   - English songs: Identify nouns, verbs, and adjectives and translate them to Japanese
 - Format vocabulary with kanji, romaji, English translation, and character breakdown
 - Expose functionality through a FastAPI endpoint
+- Cache management utilities for both lyrics and vocabulary caches
 
 ## Requirements
 
@@ -93,6 +96,11 @@ Once the server is running, you can access the interactive API documentation at:
 - Swagger UI: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
 
+### Additional Endpoints
+
+- **Cache Management**: `/api/v1/cache/clean` - Clean up old cache entries
+- **Vocabulary Cache Listing**: `/api/v1/vocab-cache` - List all cached vocabulary entries
+
 ## Performance Optimization
 
 The application implements several performance optimizations:
@@ -102,10 +110,16 @@ The application implements several performance optimizations:
    - Cached lyrics are compressed using zlib to reduce storage requirements
    - Typical compression ratios range from 1.4x to 2.5x depending on lyrics content
 
-2. **Cache Management**:
+2. **Vocabulary Caching**: Processed vocabulary is cached as JSON files to reduce LLM processing overhead
+   - Vocabulary is stored with metadata including song, artist, and timestamp
+   - Cached vocabulary is retrieved based on song and artist name
+   - Significant reduction in response time by eliminating LLM processing for repeat requests
+
+3. **Cache Management**:
    - Automatic cleanup of old cache entries (configurable, default: 90 days)
    - Size-based cache limiting (configurable, default: 1000 entries)
    - LRU (Least Recently Used) eviction policy for excess entries
+   - Separate management for both lyrics and vocabulary caches
 
 ## Testing
 
@@ -138,7 +152,8 @@ song-vocabulary/
 │       ├── __init__.py
 │       ├── get_lyrics.py     # Tool to fetch lyrics
 │       ├── extract_vocab.py  # Tool to extract vocabulary
-│       └── return_vocab.py   # Tool to format vocabulary
+│       ├── return_vocab.py   # Tool to format vocabulary
+│       └── vocab_cache.py    # Tool for vocabulary caching
 ├── tests/                    # Unit and integration tests
 │   ├── __init__.py
 │   ├── test_agent.py         # Tests for the ReAct agent
@@ -146,6 +161,9 @@ song-vocabulary/
 │   ├── test_get_lyrics.py    # Tests for lyrics retrieval
 │   ├── test_integration.py   # Integration tests between tools
 │   ├── test_return_vocab.py  # Tests for vocabulary formatting
+│   ├── test_vocab_cache.py   # Tests for vocabulary caching
+│   ├── test_vocab_cache_integration.py # Integration tests for vocabulary caching
+│   ├── test_caching_integration.py # Integration tests for both caching systems
 │   └── QA_TESTING_SUMMARY.md # QA assessment and test coverage report
 ├── requirements.txt          # Project dependencies
 ├── .env.example              # Example environment variables

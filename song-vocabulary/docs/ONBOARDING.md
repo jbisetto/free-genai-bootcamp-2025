@@ -4,7 +4,7 @@
 
 The Song Vocabulary App is an AI-powered application that extracts Japanese vocabulary from song lyrics. It uses a ReAct (Reasoning + Acting) agent pattern with Mistral 7B to create a tool-using AI system that can:
 
-1. Search for and retrieve song lyrics (with efficient caching and compression)
+1. Search for and retrieve song lyrics
 2. Extract relevant Japanese vocabulary from those lyrics
 3. Format the vocabulary into a structured JSON response
 
@@ -42,9 +42,9 @@ This document will help you understand the architecture, components, and workflo
              ▼
     ┌─────────────────┐
     │                 │
-    │  SQLite Cache   │
-    │  with zlib      │
-    │  Compression    │
+    │  JSON           │
+    │  Vocabulary     │
+    │  Cache          │
     │                 │
     └─────────────────┘
 ```
@@ -86,7 +86,7 @@ async def cache_list():
     return table
 ```
 
-This endpoint returns a formatted text-based table of all songs and artists currently in the cache, along with their cache timestamps and last accessed times. It's designed for easy viewing directly in a browser or console, making it ideal for quick debugging and monitoring of the caching system.
+This endpoint returns a formatted text-based table of all songs and artists currently in the vocabulary cache, along with their cache timestamps and last accessed times. It's designed for easy viewing directly in a browser or console, making it ideal for quick debugging and monitoring of the vocabulary caching system.
 
 **Example Output:**
 
@@ -165,7 +165,7 @@ The agent uses three specialized tools:
 
 #### a. Get Lyrics Tool (`app/tools/get_lyrics.py`)
 
-Searches for and retrieves lyrics for a given song and artist using DuckDuckGo search, with an efficient caching system using SQLite and zlib compression:
+Searches for and retrieves lyrics for a given song and artist using DuckDuckGo search:
 
 ```python
 def get_lyrics(song: str, artist: Optional[str] = None, use_mock: bool = False) -> Dict[str, Any]:
@@ -272,72 +272,55 @@ def return_vocabulary(vocabulary_data: Dict[str, Any]) -> Dict[str, Any]:
     }
 ```
 
-## Caching System and Mock Mode
+## Vocabulary Caching System and Mock Mode
 
-The application includes a sophisticated caching system using SQLite and zlib compression to improve performance and reduce external API calls.
+The application includes a vocabulary caching system using JSON file storage to improve performance and reduce LLM processing overhead.
 
-### SQLite Caching
+### JSON-based Vocabulary Caching
 
-The caching system stores compressed lyrics in a SQLite database with the following features:
+The vocabulary caching system stores processed vocabulary in JSON files with the following features:
 
-1. **Automatic Cache Creation**: The database is created automatically if it doesn't exist
-2. **Compression**: Lyrics are compressed using zlib to reduce storage requirements
-3. **Metadata Storage**: Additional metadata like source and timestamp are stored alongside lyrics
+1. **Automatic Cache Creation**: The cache directory is created automatically if it doesn't exist
+2. **Structured Storage**: Vocabulary data is stored in JSON format for easy retrieval
+3. **Metadata Storage**: Additional metadata like song, artist, and timestamp are stored alongside vocabulary
 4. **Cache Management**: A function to clean up old or excess entries is provided
 
 ```python
-def get_cached_lyrics(song: str, artist: Optional[str] = None) -> Optional[Dict[str, Any]]:
-    """Retrieve lyrics from the cache if available."""
-    # Create the database connection
-    conn = sqlite3.connect(CACHE_DB_PATH)
-    try:
-        cursor = conn.cursor()
-        
-        # Create the table if it doesn't exist
-        cursor.execute(
-            """CREATE TABLE IF NOT EXISTS lyrics_cache (
-                id INTEGER PRIMARY KEY,
-                song TEXT,
-                artist TEXT,
-                lyrics BLOB,
-                metadata TEXT,
-                timestamp INTEGER,
-                UNIQUE(song, artist)
-            )"""
-        )
-        
-        # Query for the cached lyrics
-        query = "SELECT lyrics, metadata, timestamp FROM lyrics_cache WHERE song = ? AND "
-        if artist is None:
-            query += "artist IS NULL"
-            params = (song,)
-        else:
-            query += "artist = ?"
-            params = (song, artist)
-            
-        cursor.execute(query, params)
-        result = cursor.fetchone()
-        
-        if result:
-            # Decompress the lyrics
-            compressed_lyrics, metadata_json, timestamp = result
-            lyrics = zlib.decompress(compressed_lyrics).decode('utf-8')
-            metadata = json.loads(metadata_json)
-            
-            return {
-                "success": True,
-                "lyrics": lyrics,
-                "source": metadata.get("source", "cache"),
-                "is_mock": metadata.get("is_mock", False),
-                "cache_info": {
-                    "timestamp": timestamp,
-                    "age_seconds": int(time.time()) - timestamp
-                }
-            }
-        
+def get_cached_vocab(song: str, artist: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """Retrieve vocabulary from the cache if available."""
+    # Ensure cache directory exists
+    os.makedirs(VOCAB_CACHE_DIR, exist_ok=True)
+    
+    # Generate cache key based on song and artist
+    cache_key = f"{song}_{artist if artist else 'unknown'}".lower()
+    cache_key = re.sub(r'[^a-z0-9_]', '_', cache_key)
+    cache_file = os.path.join(VOCAB_CACHE_DIR, f"{cache_key}.json")
+    
+    # Check if cache file exists
+    if not os.path.exists(cache_file):
         return None
-    finally:
-        conn.close()
+    
+    # Read and parse the cache file
+    try:
+        with open(cache_file, 'r', encoding='utf-8') as f:
+            cache_data = json.load(f)
+            
+        # Extract cache metadata
+        metadata = cache_data.get("_cache_metadata", {})
+        
+        # Update the last accessed timestamp
+        # This is done in a separate function in the actual implementation
+        
+        # Remove metadata from the returned result
+        result = cache_data.copy()
+        if "_cache_metadata" in result:
+            del result["_cache_metadata"]
+        
+        # Return the vocabulary data with cache information
+        return result
+    except (json.JSONDecodeError, FileNotFoundError, KeyError) as e:
+        logger.error(f"Error reading vocabulary cache: {e}")
+        return None
 ```
 
 ### Mock Mode
@@ -631,32 +614,29 @@ with patch('app.agent.agent.client') as mock_client:
 
 #### 4. Caching System Testing
 
-For testing the caching system, we use a combination of real and mock components:
+For testing the vocabulary caching system, we use a combination of real and mock components:
 
-1. **Real SQLite Database**: We use a real SQLite database but with a temporary path for testing
+1. **Real JSON Files**: We use real JSON files but with a temporary directory path for testing
 2. **Mock Network Failures**: We simulate network failures by raising exceptions from mocked components
-3. **Performance Testing**: We compare the performance of cached vs. non-cached retrieval
+3. **Performance Testing**: We compare the performance of cached vs. non-cached vocabulary retrieval
 
 ```python
-# Example: Setting up a test database for caching
+# Example: Setting up a test directory for vocabulary caching
 def setUp(self):
-    # Create a temporary directory for the test database
-    self.test_db_dir = tempfile.mkdtemp()
-    self.test_db_path = os.path.join(self.test_db_dir, "test_lyrics_cache.db")
+    # Create a temporary directory for the vocabulary cache
+    self.test_cache_dir = tempfile.mkdtemp()
     
-    # Set the environment variable to use the test database
-    os.environ["LYRICS_CACHE_PATH"] = self.test_db_path
+    # Set the environment variable to use the test cache directory
+    os.environ["VOCAB_CACHE_DIR"] = self.test_cache_dir
 ```
 
 ### Test Coverage
 
 Our tests cover the following key areas:
 
-1. **Lyrics Retrieval and Caching**:
-   - Successful retrieval and caching of lyrics
+1. **Lyrics Retrieval**:
+   - Successful retrieval of lyrics
    - Error handling for network failures
-   - Cache hit/miss scenarios
-   - Compression and decompression of cached lyrics
    - Metadata handling
 
 2. **Vocabulary Extraction**:

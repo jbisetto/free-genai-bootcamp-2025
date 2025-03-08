@@ -8,8 +8,7 @@ We want to create an AI agent using tool use and expose that as an API endpoint.
 - Ollama via the Ollama Python SDK, using Mistral 7B (running locally)
 - Instructor (for structured JSON output)
 - duckduckgo-search to get lyrics
-- SQLite for caching lyrics with compression
-- zlib for text compression
+- JSON file storage for vocabulary caching
 
 ## Project Structure
 ```
@@ -23,15 +22,20 @@ song-vocabulary/
 │   │   └── prompt.py         # ReAct prompt template
 │   └── tools/
 │       ├── __init__.py
-│       ├── get_lyrics.py     # Tool to fetch lyrics with caching
+│       ├── get_lyrics.py     # Tool to fetch lyrics
 │       ├── extract_vocab.py  # Tool to extract vocabulary
-│       └── return_vocab.py   # Tool to format vocabulary
+│       ├── return_vocab.py   # Tool to format vocabulary
+│       └── vocab_cache.py    # Tool for vocabulary caching
 ├── data/                     # Directory for cached data
-│   └── lyrics_cache.db       # SQLite database for cached lyrics
-├── tests/                    # Unit tests
+│   └── vocab_cache/          # Directory for cached vocabulary files
+├── tests/                    # Unit and integration tests
 │   ├── __init__.py
-│   ├── test_agent.py
-│   └── test_tools.py
+│   ├── test_agent.py         # Tests for the ReAct agent
+│   ├── test_extract_vocab.py # Tests for vocabulary extraction
+│   ├── test_get_lyrics.py    # Tests for lyrics retrieval
+│   ├── test_return_vocab.py  # Tests for vocabulary formatting
+│   ├── test_vocab_cache.py   # Tests for vocabulary caching
+│   └── test_integration.py   # Integration tests between tools
 ├── requirements.txt          # Project dependencies
 ├── .env.example              # Example environment variables
 ├── README.md                 # Project documentation
@@ -56,11 +60,11 @@ The agent will not need to load the output into the database.
 ### Agent Tools
 
 1. `get_lyrics` - Get song lyrics from duckduckgo-search (retrieve all lyrics, not just Japanese ones)
-   - Implements SQLite-based caching with zlib compression to reduce external API calls
-   - Normalizes song and artist names for consistent cache lookup
-   - Automatically detects language (Japanese/English) for cached lyrics
-   - Includes cache management to limit size and remove old entries
-   - Provides compression statistics and metrics for monitoring
+   - Makes web requests to find and extract lyrics for songs
+   - Normalizes song and artist names for consistent search results
+   - Automatically detects language (Japanese/English) for lyrics
+   - Handles various search result formats to extract clean lyrics
+   - Provides error handling for failed searches
 2. `extract_vocabulary` - Extract vocabulary words from the lyrics with the following features:
    - Handles both Japanese and English songs:
      - For Japanese songs: Extracts vocabulary directly from the lyrics
@@ -71,6 +75,11 @@ The agent will not need to load the output into the database.
    - Implements fallback mechanisms when insufficient items are found
    - Maintains consistent JSON output format regardless of input language
 3. `return_vocabulary` - Return the list of vocabulary words
+4. `vocab_cache` - Manage vocabulary caching
+   - Stores processed vocabulary results as JSON files
+   - Provides functions for saving, retrieving, and listing cached vocabulary
+   - Implements cache management to limit size and remove old entries
+   - Includes metadata with each cached entry for tracking and management
 
 Each tool will be a separate function located in the app/tools directory as specified in the project structure.
 
@@ -148,57 +157,138 @@ See 'backend-flask/seed/data_verbs.json' for an example of the expected output.
 }
 ```
 
+## Caching Strategy
+
+The application implements an efficient vocabulary caching system to optimize performance and reduce external dependencies:
+
+1. **Storage Mechanism**:
+   - Uses JSON files in a dedicated directory
+   - One file per vocabulary entry for easy management
+   - Includes metadata in each cached file
+
+2. **Cache Key Generation**:
+   - Creates deterministic filenames based on song and artist
+   - Handles special characters and encoding issues
+   - Ensures unique cache keys for each vocabulary set
+
+3. **Cache Management**:
+   - Implements time-based expiration (default: 90 days)
+   - Implements size-based limiting (default: 1000 entries)
+   - Provides functions for listing and cleaning the cache
+   - Implements proper file locking for concurrent access
+
+4. **Integration with Agent**:
+   - Agent checks vocabulary cache before processing
+   - Short-circuits processing when cached results are available
+   - Automatically saves new results to cache
+
+### Caching Benefits
+
+1. **Reduced External Dependencies**:
+   - Eliminates need for repeated lyrics retrieval
+   - Enables offline operation for previously processed songs
+   - Minimizes external API calls for repeat requests
+
+2. **Improved Performance**:
+   - Significantly reduces response time for cached entries
+   - Eliminates LLM processing overhead for repeat requests
+   - Provides near-instantaneous responses for popular songs
+
+3. **Resource Optimization**:
+   - Reduces bandwidth usage
+   - Minimizes LLM token consumption
+   - Improves overall application efficiency
+
 ## Testing Strategy
 
-### Testing Principles
-The application follows a comprehensive testing strategy based on these key principles:
+The application follows a technology-agnostic testing strategy based on industry best practices:
 
-1. **Component Isolation**
+### Core Testing Principles
+
+1. **No External Service Dependencies**
+   - All tests must run without internet connectivity
+   - External services must be properly mocked
+   - Tests should never make real API or web requests
+   - Cache systems should be isolated during testing
+
+2. **Component Isolation**
    - Each component should be testable in isolation
-   - External dependencies should be abstracted to allow for mocking
+   - Dependencies should be injected to facilitate mocking
    - Tests should not depend on implementation details
-   - Lyrics caching system includes a mock mode for testing without external APIs
+   - Clear boundaries between components should be maintained
 
-2. **Multi-level Testing**
-   - Unit tests for individual components
+3. **Multi-level Testing Approach**
+   - Unit tests for individual functions and methods
    - Integration tests for component interactions
-   - Functional tests for complete workflows
-   - Error handling tests for resilience verification
+   - End-to-end tests for complete workflows
+   - Performance tests for critical paths
 
-3. **Test-Driven Development**
-   - Tests should be written before or alongside code
-   - Tests serve as living documentation of expected behavior
-   - Tests should guide implementation decisions
+4. **Test Data Management**
+   - Test data should be isolated from production data
+   - Tests should clean up after themselves
+   - Each test should start with a known state
+   - Test data should be representative of real-world scenarios
 
-4. **Continuous Verification**
-   - Tests should be run frequently during development
-   - Test automation should be integrated into the development workflow
-   - Test failures should be addressed promptly
+### Mocking Best Practices
 
-### Test Coverage Expectations
+1. **External API Mocking**
+   - Web search APIs should be mocked at the request level
+   - Mock responses should mirror real API responses
+   - Error conditions should be simulated
+   - Network failures should be testable
 
-The testing strategy should aim for comprehensive coverage with emphasis on critical paths:
+2. **LLM Response Mocking**
+   - LLM responses should be deterministic during tests
+   - Various response formats should be tested
+   - Error handling for malformed responses should be verified
+   - Edge cases in response parsing should be covered
 
-- Core functionality should have near-complete test coverage
-- Error handling paths should be thoroughly tested
-- Edge cases should be identified and covered
-- API contracts should be verified through tests
+3. **Component Interaction Mocking**
+   - Mock interactions between components
+   - Verify correct parameters are passed between components
+   - Test error propagation between components
+   - Ensure components are loosely coupled
 
-### Mocking Guidelines
+4. **Caching System Mocking**
+   - Isolate tests from actual cache storage
+   - Test both cache hits and misses
+   - Verify cache key generation logic
+   - Test cache management functions
 
-When testing components with external dependencies:
+### Testing Implementation
 
-1. Use dependency injection to facilitate mocking
-2. Create clear interfaces for external services
-3. Mock at the appropriate level (HTTP, client library, etc.)
-4. Ensure mocks reflect realistic behavior
+1. **Test Setup and Teardown**
+   - Properly initialize test environment
+   - Clean up all test artifacts after tests
+   - Use try/finally blocks to ensure cleanup
+   - Isolate tests from each other
+
+2. **Assertion Strategies**
+   - Use specific, targeted assertions
+   - Test both positive and negative cases
+   - Verify side effects when appropriate
+   - Include helpful error messages
+
+3. **Test Organization**
+   - Group related tests together
+   - Use descriptive test names
+   - Follow consistent naming conventions
+   - Separate unit and integration tests
+
+4. **Test Coverage Goals**
+   - Aim for high coverage of core functionality
+   - Prioritize critical paths and error handling
+   - Test edge cases and boundary conditions
+   - Verify performance characteristics
 
 ### Quality Assurance Process
 
-Beyond automated testing, the QA process should include:
+Beyond automated testing, the QA process includes:
 
 1. Code reviews with attention to testability
 2. Regular test coverage analysis
+3. Continuous integration to run tests automatically
+4. Documentation of testing approach and results
 3. Periodic test suite maintenance
 4. Documentation of testing approach and coverage
 

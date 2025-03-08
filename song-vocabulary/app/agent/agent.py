@@ -11,6 +11,7 @@ from app.agent.prompt import get_prompt
 from app.tools.get_lyrics import get_lyrics
 from app.tools.extract_vocab import extract_vocabulary
 from app.tools.return_vocab import return_vocabulary
+from app.tools.vocab_cache import get_cached_vocab, save_vocab_to_cache
 
 # Initialize logging
 logger = logging.getLogger(__name__)
@@ -303,6 +304,14 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
     Returns:
         A dictionary containing either the vocabulary list or an error message
     """
+    # First check if we have cached vocabulary results
+    cached_vocab = get_cached_vocab(song, artist)
+    if cached_vocab:
+        logger.info(f"Using cached vocabulary for '{song}' by '{artist or 'Unknown'}'")
+        return cached_vocab
+    
+    logger.info(f"No cached vocabulary found for '{song}' by '{artist or 'Unknown'}', running agent")
+    
     # Generate the initial prompt
     prompt = get_prompt(song, artist)
     
@@ -366,9 +375,8 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                                     vocab_result = extract_vocabulary(agent_state["lyrics"])
                                     if vocab_result.get("success", False) and vocab_result.get("vocabulary"):
                                         result = {"vocabulary": vocab_result["vocabulary"]}
-                                        # Include cache info if available
-                                        if "cache_info" in agent_state:
-                                            result["cache_info"] = agent_state["cache_info"]
+                                        # Save to vocabulary cache
+                                        save_vocab_to_cache(song, artist, result)
                                         return result
                                 except Exception as e:
                                     logger.error(f"Direct extraction failed: {str(e)}")
@@ -377,6 +385,8 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                             if all(isinstance(item, dict) for item in final_answer["vocabulary"]) and \
                                all("kanji" in item and "romaji" in item and "english" in item for item in final_answer["vocabulary"]):
                                 # Already properly structured
+                                # Save to vocabulary cache
+                                save_vocab_to_cache(song, artist, final_answer)
                                 return final_answer
                             
                             # Try to parse strings into structured data
@@ -452,9 +462,8 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                             
                             if structured_vocab:
                                 result = {"vocabulary": structured_vocab}
-                                # Include cache info if available
-                                if "cache_info" in agent_state:
-                                    result["cache_info"] = agent_state["cache_info"]
+                                # Save to vocabulary cache
+                                save_vocab_to_cache(song, artist, result)
                                 return result
                     
                     # If it's already a properly structured dict, just return it
@@ -505,9 +514,8 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                         
                         if structured_vocab:
                             result = {"vocabulary": structured_vocab}
-                            # Include cache info if available
-                            if "cache_info" in agent_state:
-                                result["cache_info"] = agent_state["cache_info"]
+                            # Save to vocabulary cache
+                            save_vocab_to_cache(song, artist, result)
                             return result
                         else:
                             # Try to parse as JSON in case it's a JSON string
@@ -518,9 +526,8 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                                     potential_json = json_match.group(0)
                                     parsed_json = json.loads(potential_json)
                                     if "vocabulary" in parsed_json and isinstance(parsed_json["vocabulary"], list):
-                                        # Include cache info if available
-                                        if "cache_info" in agent_state and "cache_info" not in parsed_json:
-                                            parsed_json["cache_info"] = agent_state["cache_info"]
+                                        # Save to vocabulary cache
+                                        save_vocab_to_cache(song, artist, parsed_json)
                                         return parsed_json
                             except:
                                 pass
@@ -547,9 +554,6 @@ def run_agent(song: str, artist: Optional[str] = None) -> Dict[str, Any]:
                 # Update agent state
                 if action == "get_lyrics" and observation.get("success", False):
                     agent_state["lyrics"] = observation.get("lyrics")
-                    # Store cache information if available
-                    if "cache_info" in observation:
-                        agent_state["cache_info"] = observation.get("cache_info")
                 elif action == "extract_vocabulary" and observation.get("success", False):
                     agent_state["vocabulary"] = observation.get("vocabulary")
                 
