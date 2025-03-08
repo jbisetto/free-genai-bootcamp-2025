@@ -51,8 +51,12 @@ The agent will not need to load the output into the database.
 
 ### Agent Tools
 
-1. `get_lyrics` - Get song lyrics from duckduckgo-search
-2. `extract_vocabulary` - Extract vocabulary words from the lyrics
+1. `get_lyrics` - Get song lyrics from duckduckgo-search (retrieve all lyrics, not just Japanese ones)
+2. `extract_vocabulary` - Extract vocabulary words from the lyrics with the following features:
+   - Limits lyrics to at most 400 words for efficient processing
+   - Ensures exactly 5 vocabulary items are returned for all songs
+   - Uses detailed prompts with examples to guide the model
+   - Implements fallback mechanisms when insufficient items are found
 3. `return_vocabulary` - Return the list of vocabulary words
 
 Each tool will be a separate function located in the app/tools directory as specified in the project structure.
@@ -114,11 +118,12 @@ See 'backend-flask/seed/data_verbs.json' for an example of the expected output.
       "english": "<english>",
       "parts": [
         {
-          "kanji": "<kanji>",
-          "romaji": ["<romaji>"]
+          "character": "<kanji>",
+          "romaji": "<romaji>"
         }
       ]
     }
+    // Always returns exactly 5 vocabulary items
   ]
 }
 ```
