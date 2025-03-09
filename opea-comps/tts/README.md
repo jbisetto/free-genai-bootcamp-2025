@@ -1,5 +1,7 @@
 # TTS Service - Learning Journal
 
+NOTE: I've taken this part of the week 4 bootcamp assignment as far as my time allows. If I have time, I will continue working on it later.
+
 ## Changes for Building ARM Image
 
 This section outlines the modifications made to enable building the ARM-compatible Docker image for the TTS services:

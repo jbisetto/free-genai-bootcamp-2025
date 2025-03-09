@@ -2,7 +2,7 @@
 
 ## Overview
 
-This directory contains the OPEA Chat Bootcamp Service, a microservice that provides a chat completion API endpoint. The service is built using Python and FastAPI, and is containerized using Docker.
+This is an implementation of the microservice that was demoed in the bootcamp livestream for week 4.
 
 ## How It Works
 
