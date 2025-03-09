@@ -1,6 +1,6 @@
 # OPEA Comps
 
-This directory contains work for the and technologies covered in the week 4 OPEA videos
+This directory contains work for the and technologies covered in the week 3 OPEA videos
 
 ## Overview
 

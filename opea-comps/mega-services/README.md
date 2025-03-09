@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is an implementation of the microservice that was demoed in the bootcamp livestream for week 4.
+This is an implementation of the microservice that was demoed in the bootcamp livestream for week 3.
 
 ## How It Works
 

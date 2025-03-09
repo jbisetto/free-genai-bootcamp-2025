@@ -1,6 +1,6 @@
 # TTS Service - Learning Journal
 
-NOTE: I've taken this part of the week 4 bootcamp assignment as far as my time allows. If I have time, I will continue working on it later.
+NOTE: I've taken this part of the week 3 bootcamp assignment as far as my time allows. If I have time, I will continue working on it later.
 
 ## Changes for Building ARM Image
 
