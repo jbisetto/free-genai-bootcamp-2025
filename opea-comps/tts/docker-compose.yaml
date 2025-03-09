@@ -1,0 +1,134 @@
+version: '3.8'
+
+# Define named volumes for persistent data
+volumes:
+  audio_data:
+    name: tts_audio_data
+  model_cache:
+    name: tts_model_cache
+
+networks:
+  megaservice_network:
+    driver: bridge
+    # Enable IPv6 support
+    enable_ipv6: true
+    # Use custom subnet to avoid conflicts
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+services:
+  speecht5-service:
+    image: speecht5-service:arm64
+    platform: linux/arm64
+    container_name: speecht5-service
+    ports:
+      # Restrict to localhost if not needed externally
+      - "127.0.0.1:${SPEECHT5_PORT:-7055}:7055"
+    ipc: host
+    environment:
+      no_proxy: ${no_proxy}
+      http_proxy: ${http_proxy}
+      https_proxy: ${https_proxy}
+      # Add logging level configuration
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    # Resource limits to prevent container from consuming too much
+    deploy:
+      resources:
+        limits:
+          cpus: '${SPEECHT5_CPU_LIMIT:-1.0}'
+          memory: ${SPEECHT5_MEMORY_LIMIT:-2G}
+    # Mount model cache volume
+    volumes:
+      - model_cache:/home/user/models
+    restart: no
+    # Configure logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7055/health"]
+      interval: 10s
+      timeout: 6s
+      retries: 18
+      # Add start period to allow for initialization
+      start_period: 30s
+    # Add security options
+    security_opt:
+      - no-new-privileges:true
+
+  # gptsovits-service:
+  #   image: ${REGISTRY:-opea}/gpt-sovits:${TAG:-latest}
+  #   pull_policy: if_not_present
+  #   container_name: gpt-sovits-service
+  #   ports:
+  #     - "127.0.0.1:${GPT_SOVITS_PORT:-9880}:9880"
+  #   ipc: host
+  #   volumes:
+  #     - audio_data:/audio
+  #     - model_cache:/home/user/models
+  #   environment:
+  #     no_proxy: ${no_proxy}
+  #     http_proxy: ${http_proxy}
+  #     https_proxy: ${https_proxy}
+  #     LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  #     # Add cache configuration
+  #     CACHE_DIR: /home/user/models
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '${GPT_SOVITS_CPU_LIMIT:-1.5}'
+  #         memory: ${GPT_SOVITS_MEMORY_LIMIT:-4G}
+  #   restart: no
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:9880/health"]
+  #     interval: 10s
+  #     timeout: 6s
+  #     retries: 18
+  #     start_period: 30s
+  #   security_opt:
+  #     - no-new-privileges:true
+
+  # tts-gptsovits:
+  #   image: ${REGISTRY:-opea}/tts:${TAG:-latest}
+  #   pull_policy: if_not_present
+  #   container_name: tts-gptsovits-service
+  #   ports:
+  #     # This is the main service port, can be exposed externally
+  #     - "${TTS_PORT:-9088}:9088"
+  #   ipc: host
+  #   environment:
+  #     # Use service name instead of hardcoded IP
+  #     TTS_ENDPOINT: http://gptsovits-service:9880
+  #     TTS_COMPONENT_NAME: ${TTS_COMPONENT_NAME:-OPEA_GPTSOVITS_TTS}
+  #     LOG_LEVEL: ${LOG_LEVEL:-INFO}
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '${TTS_CPU_LIMIT:-0.5}'
+  #         memory: ${TTS_MEMORY_LIMIT:-1G}
+  #   depends_on:
+  #     gptsovits-service:
+  #       condition: service_healthy
+  #   restart: no
+  #   logging:
+  #     driver: "json-file"
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+  #   # Add healthcheck for the main service too
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:9088/health"]
+  #     interval: 10s
+  #     timeout: 6s
+  #     retries: 18
+  #     start_period: 10s
+  #   security_opt:
+  #     - no-new-privileges:true
