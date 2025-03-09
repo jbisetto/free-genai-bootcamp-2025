@@ -4,6 +4,8 @@
 
 This directory contains work on implementing vLLM (a high-performance inference engine) to run Google's Gemma-2B model on Apple Silicon hardware. This README documents the implementation attempts and success.
 
+There are more details on the process in the `vllm-tutorial.md` file. 
+
 ## What Was Done
 
 1. **Created a Docker Compose Configuration**
