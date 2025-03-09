@@ -1,0 +1,10 @@
+#!/bin/bash
+
+curl http://localhost:8000/v1/completions \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "prompt": "Explain what a language model is in simple terms",
+    "max_tokens": 150,
+    "temperature": 0.7
+  }'

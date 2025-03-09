@@ -1,0 +1,44 @@
+version: '3.8'
+
+# Define named volumes for persistent data
+volumes:
+  gemma_models:
+    name: gemma-models
+
+services:
+  vllm-gemma:
+    image: ghcr.io/vllm-project/vllm-mps:latest
+    platform: linux/arm64
+    container_name: vllm-gemma-service
+    pull_policy: if_not_present
+    ports:
+      - "8000:8000"
+    volumes:
+      - gemma_models:/root/.cache/huggingface
+    environment:
+      - HF_TOKEN=${HF_TOKEN}
+      - PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0
+    command: >
+      --model google/gemma-2b
+      --max-model-len 2048
+      --dtype float16
+      --device mps
+      --chat-template gemma
+    deploy:
+      resources:
+        limits:
+          memory: ${VLLM_MEMORY_LIMIT:-8G}
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    security_opt:
+      - no-new-privileges:true
